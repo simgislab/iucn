@@ -1,0 +1,1871 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Расчет категории IUCN</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="../rostov/libs/ext-3.3.1/resources/css/ext-all.css" type="text/css">
+<script type="text/javascript" src="../rostov/libs/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="../rostov/libs/ext-3.3.1/ext-all.js"></script>
+<script type="text/javascript">
+var iucn_name;
+var iucn_cat;
+Ext.onReady(function() {
+Ext.QuickTips.init();
+var ds = new Ext.data.Store({
+        proxy: new Ext.data.ScriptTagProxy({
+            url: 'db-read.php'
+        }),
+        reader: new Ext.data.JsonReader({
+            root: 'items',
+            totalProperty: 'totalCount',
+            id: 'id'
+        }, [
+            {name: 'latin', mapping: 'latin'},
+            {name: 'cat', mapping: 'cat'},
+            {name: 'crit', mapping: 'crit'}
+        ])
+    });
+
+    // Custom rendering Template
+    var resultTpl = new Ext.XTemplate(
+        '<tpl for="."><div class="search-item">',
+            '<span>{latin}</span>',
+        '</div></tpl>'
+    );
+    
+    var search = new Ext.form.ComboBox({
+        store: ds,
+        displayField:'latin',
+        typeAhead: false,
+        loadingText: 'Searching...',
+        width: 570,
+        pageSize:200,
+        hideTrigger:true,
+        tpl: resultTpl,
+        applyTo: 'search',
+        itemSelector: 'div.search-item',
+        listeners: {
+            select: function(selection, record) {
+                    iucn_name = selection.value;
+                    iucn_cat = record.data.cat + record.data.crit;
+                }
+        }
+    });
+
+form = new Ext.form.FormPanel({
+labelWidth: 200,
+width: 700,
+items: [
+        {
+            xtype: 'fieldset',
+            id: 'q0',
+            title:"По каким параметрам нужно провести оценку? (q0) <a href='q0.html' target='_blank'><img src=\"q.png\"></a>",
+            disabled: false,
+            items: [{
+                xtype: 'checkboxgroup',
+                id: 'q0g',
+                columns: 1,
+                hideLabel : true,
+                items: [
+                    {boxLabel: 'Исчезновение вида',name: 'ex',
+                        listeners: {
+                            "check" : function(chckbx,state){
+                                if (state) {
+                                    Ext.getCmp('q22').show();
+                                    Ext.getCmp('q23').show();
+                                } else {
+                                    Ext.getCmp('q22').hide();
+                                    Ext.getCmp('q23').hide();
+                                }
+                            }
+                        }
+                    },
+                    {boxLabel: 'Динамика численности',name: 'a',
+                        listeners: {
+                            "check" : function(chckbx,state){
+                                if (state) {
+                                    Ext.getCmp('q1').show();
+                                    Ext.getCmp('q3').show();
+                                    Ext.getCmp('q4').show();
+                                    Ext.getCmp('q5').show();
+                                    Ext.getCmp('q6').show();
+                                } else {
+                                    Ext.getCmp('q1').hide();
+                                    Ext.getCmp('q3').hide();
+                                    Ext.getCmp('q4').hide();
+                                    Ext.getCmp('q5').hide();
+                                    Ext.getCmp('q6').hide();
+                                }
+                            }
+                        }
+                    },
+                    {boxLabel: 'Размеры области распространения',name: 'b1',
+                        listeners: {
+                            "check" : function(chckbx,state){
+                                if (state) {
+                                    Ext.getCmp('q7').show();
+                                    Ext.getCmp('q9').show();
+                                    Ext.getCmp('q10').show();
+                                    Ext.getCmp('q11').show();
+                                    Ext.getCmp('q12').show();
+                                } else {
+                                    Ext.getCmp('q7').hide();
+                                    Ext.getCmp('q9').hide();
+                                    Ext.getCmp('q10').hide();
+                                    Ext.getCmp('q11').hide();
+                                    Ext.getCmp('q12').hide();
+                                }
+                            }
+                        }
+                    },
+                    {boxLabel: 'Размеры области обитания',name: 'b2',
+                        listeners: {
+                            "check" : function(chckbx,state){
+                                if (state) {
+                                    Ext.getCmp('q8').show();
+                                    Ext.getCmp('q11').show();
+                                    Ext.getCmp('q12').show();
+                                    Ext.getCmp('q20').show();
+                                    Ext.getCmp('q21').show();
+                                } else {
+                                    Ext.getCmp('q8').hide();
+                                    Ext.getCmp('q11').hide();
+                                    Ext.getCmp('q12').hide();
+                                    Ext.getCmp('q20').hide();
+                                    Ext.getCmp('q21').hide();
+                                }
+                            }
+                        }
+                    },
+                    {boxLabel: 'Количество половозрелых особей',name: 'c',
+                        listeners: {
+                            "check" : function(chckbx,state){
+                                if (state) {
+                                    Ext.getCmp('q13').show();
+                                    Ext.getCmp('q14').show();
+                                    Ext.getCmp('q16').show();
+                                    Ext.getCmp('q17').show();
+                                    Ext.getCmp('q18').show();
+                                } else {
+                                    Ext.getCmp('q13').hide();
+                                    Ext.getCmp('q14').hide();
+                                    Ext.getCmp('q16').hide();
+                                    Ext.getCmp('q17').hide();
+                                    Ext.getCmp('q18').hide();
+                                }
+                            }
+                        }
+                    },
+                    {boxLabel: 'Вероятность исчезновения таксона',name: 'e',
+                        listeners: {
+                            "check" : function(chckbx,state){
+                                if (state) {
+                                    Ext.getCmp('q19').show();
+                                } else {
+                                    Ext.getCmp('q19').hide();
+                                }
+                            }
+                        }
+                    }
+                ]}]
+        },
+        {
+            xtype:"fieldset",
+            id: "q22",
+            title:"Исчез ли вид окончательно? (q22) <a href='q22.html' target='_blank'><img src=\"q.png\"></a>",
+            autoHeight:true,
+            hidden:true,
+            items: [
+                {
+                    xtype: 'radio',
+                    hideLabel : true,
+                    boxLabel: 'Да',
+                    name: 'q22a',
+                    id: 'q22_yes',
+                    listeners: {
+                        "check" : function(chckbx,state){
+                            if (state) {
+                                Ext.getCmp('q23').disable();
+                            }
+                        }
+                    }
+                },
+                {
+                    xtype: 'radio',
+                    hideLabel : true,
+                    inputValue: 'category',
+                    boxLabel: 'Нет',
+                    name: 'q22a',
+                    id: 'q22_no',
+                    listeners: {
+                        "check" : function(chckbx,state){
+                            if (state) {
+                                Ext.getCmp('q23').enable();
+                            }
+                        }
+                    }
+                },
+                {
+                    xtype: 'radio',
+                    hideLabel : true,
+                    boxLabel: 'Нет данных',
+                    name: 'q22a',
+                    id: 'q22_nd',
+                    listeners: {
+                        "check" : function(chckbx,state){
+                            if (state) {
+                                Ext.getCmp('q23').enable();
+                            }
+                        }
+                    }
+                }]
+        },
+        {
+            xtype:"fieldset",
+            id: "q23",
+            title:"Исчез ли вид только дикой природе? (q23) <a href='q23.html' target='_blank'><img src=\"q.png\"></a>",
+            autoHeight:true,
+            hidden:true,
+            items: [
+                {
+                    xtype: 'radio',
+                    hideLabel : true,
+                    boxLabel: 'Да',
+                    name: 'q23a',
+                    id: 'q23_yes',
+                    listeners: {
+                        "check" : function(chckbx,state){
+                            if (state) {
+                                Ext.getCmp('q22').disable();
+                            }
+                        }
+                    }
+                },
+                {
+                    xtype: 'radio',
+                    hideLabel : true,
+                    inputValue: 'category',
+                    boxLabel: 'Нет',
+                    name: 'q23a',
+                    id: 'q23_no',
+                    listeners: {
+                        "check" : function(chckbx,state){
+                            if (state) {
+                                Ext.getCmp('q22').enable();
+                            }
+                        }
+                    }
+                },
+                {
+                    xtype: 'radio',
+                    hideLabel : true,
+                    boxLabel: 'Нет данных',
+                    name: 'q23a',
+                    id: 'q23_nd',
+                    listeners: {
+                        "check" : function(chckbx,state){
+                            if (state) {
+                                Ext.getCmp('q22').утable();
+                            }
+                        }
+                    }
+                }]
+        },
+        {
+        xtype:"fieldset",
+        id: "q1",
+        title:"Сокращается ли численность вида в последние 10 лет или 3 поколения? (q1) <a href='q1.html' target='_blank'><img src=\"q.png\"></a>",
+        //autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                name: 'q1a',
+                id: 'q1_yes',
+                boxLabel: 'Да, численность сокращалась',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q3').enable();
+                            Ext.getCmp('q3').setTitle('На сколько сократилась численность?');
+                            Ext.getCmp('q4').enable();
+                            Ext.getCmp('q5').enable();
+                            Ext.getCmp('q6').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                name: 'q1a',
+                id: 'q1_yesfut',
+                boxLabel: 'Да, численность сокращалась и будет сокращаться',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q3').enable();
+                            Ext.getCmp('q3').setTitle('На сколько сократилась и продолжит сокращаться численность?');
+                            Ext.getCmp('q4').disable();
+                            Ext.getCmp('q5').disable();
+                            Ext.getCmp('q6').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                name: 'q1a',
+                id: 'q1_nofut',
+                boxLabel: 'Нет, но сократится в будущем',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q3').enable();
+                            Ext.getCmp('q3').setTitle('На сколько сократится численность в будущем?');
+                            Ext.getCmp('q4').disable();
+                            Ext.getCmp('q5').disable();
+                            Ext.getCmp('q6').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                name: 'q1a',
+                id: 'q1_no',
+                boxLabel: 'Нет',
+                listeners: {
+                    "check": function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q3').disable();
+                            Ext.getCmp('q4').disable();
+                            Ext.getCmp('q5').disable();
+                            Ext.getCmp('q6').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                name: 'q1a',
+                id: 'q1_nd',
+                boxLabel: 'Нет данных',
+                listeners: {
+                    "check": function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q3').disable();
+                            Ext.getCmp('q4').disable();
+                            Ext.getCmp('q5').disable();
+                            Ext.getCmp('q6').disable();
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    {
+        xtype:"fieldset",
+        id: "q3",
+        title:"На сколько сократилась численность (или сократится в будущем)? (q3) <a href='q3.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: true,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не менее чем на 90%',
+                name: 'q3a',
+                id: 'q3_90',
+                listeners: {
+                    "check": function(chckbx,state) {
+                        if (state) {
+                            dlgPopup.show();
+                            Ext.getCmp('q4').enable();
+                            Ext.getCmp('q5').enable();
+                            Ext.getCmp('q6').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не менее чем на 80%',
+                name: 'q3a',
+                id: 'q3_80',
+                listeners: {
+                    "check": function(chckbx,state) {
+                        if (state) {
+                            dlgPopup.show();
+                            Ext.getCmp('q4').enable();
+                            Ext.getCmp('q5').enable();
+                            Ext.getCmp('q6').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не менее чем на 70%',
+                name: 'q3a',
+                id: 'q3_70',
+                listeners: {
+                    "check": function(chckbx,state) {
+                        if (state) {
+                            dlgPopup.show();
+                            Ext.getCmp('q4').enable();
+                            Ext.getCmp('q5').enable();
+                            Ext.getCmp('q6').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не менее чем на 50%',
+                name: 'q3a',
+                id: 'q3_50',
+                listeners: {
+                    "check": function(chckbx,state) {
+                        if (state) {
+                            dlgPopup.show();
+                            Ext.getCmp('q4').enable();
+                            Ext.getCmp('q5').enable();
+                            Ext.getCmp('q6').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не менее чем на 30%',
+                name: 'q3a',
+                id: 'q3_30',
+                listeners: {
+                    "check": function(chckbx,state) {
+                        if (state) {
+                            dlgPopup.show();
+                            Ext.getCmp('q4').enable();
+                            Ext.getCmp('q5').enable();
+                            Ext.getCmp('q6').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Менее чем на 30%',
+                name: 'q3a',
+                id: 'q3_30l',
+                listeners: {
+                    "check": function(chckbx,state) {
+                        if (state) {
+                            dlgPopup.show();
+                            Ext.getCmp('q4').disable();
+                            Ext.getCmp('q5').disable();
+                            Ext.getCmp('q6').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q3a',
+                id: 'q3_nd',
+                listeners: {
+                    "check": function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q4').disable();
+                            Ext.getCmp('q5').disable();
+                            Ext.getCmp('q6').disable();
+                        }
+                    }
+                }
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q4",
+        title:"Устранены ли причины сокращения численности? (q4) <a href='q4.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: true,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Да',
+                name: 'q4a',
+                id: 'q4_yes'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                inputValue: 'category',
+                boxLabel: 'Нет',
+                name: 'q4a',
+                id: 'q4_no'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q4a',
+                id: 'q4_nd'
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q5",
+        title:"Обратимы ли причины сокращения численности? (q5) <a href='q5.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: true,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Да',
+                name: 'q5a',
+                id: 'q5_yes'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет',
+                name: 'q5a',
+                id: 'q5_no'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q5a',
+                id: 'q5_nd'
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q6",
+        title:"Объяснимы ли причины сокращения численности? (q6) <a href='q6.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: true,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Да',
+                name: 'q6a',
+                id: 'q6_yes'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет',
+                name: 'q6a',
+                id: 'q6_no'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q6a',
+                id: 'q6_nd'
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q7",
+        title:"Каковы размеры области распространения? (q7) <a href='q7.html' target='_blank'><img src=\"q.png\"></a>",
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Более 20000 км2',
+                name: 'q7a',
+                id: 'q7_no',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q9').disable();
+                            Ext.getCmp('q10').disable();
+                            Ext.getCmp('q11').disable();
+                            Ext.getCmp('q12').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Менее 20000 км2',
+                name: 'q7a',
+                id: 'q7_20000',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q9').enable();
+                            Ext.getCmp('q10').enable();
+                            Ext.getCmp('q11').enable();
+                            Ext.getCmp('q12').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Менее 5000 км2',
+                name: 'q7a',
+                id: 'q7_5000',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q9').enable();
+                            Ext.getCmp('q10').enable();
+                            Ext.getCmp('q11').enable();
+                            Ext.getCmp('q12').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Менее 100 км2',
+                name: 'q7a',
+                id: 'q7_100',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q9').enable();
+                            Ext.getCmp('q10').enable();
+                            Ext.getCmp('q11').enable();
+                            Ext.getCmp('q12').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q7a',
+                id: 'q7_nd',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q9').disable();
+                            Ext.getCmp('q10').disable();
+                            Ext.getCmp('q11').disable();
+                            Ext.getCmp('q12').disable();
+                        }
+                    }
+                }
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q8",
+        title:"Каковы размеры области обитания? (q8) <a href='q8.html' target='_blank'><img src=\"q.png\"></a>",
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Более 2000 км2',
+                name: 'q8a',
+                id: 'q8_no',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q20').disable();
+                            Ext.getCmp('q21').disable();
+                            Ext.getCmp('q11').disable();
+                            Ext.getCmp('q12').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Менее 2000 км2',
+                name: 'q8a',
+                id: 'q8_2000',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q20').enable();
+                            Ext.getCmp('q21').enable();
+                            Ext.getCmp('q11').enable();
+                            Ext.getCmp('q12').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Менее 500 км2',
+                name: 'q8a',
+                id: 'q8_500',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q20').enable();
+                            Ext.getCmp('q21').enable();
+                            Ext.getCmp('q11').enable();
+                            Ext.getCmp('q12').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Менее 20 км2',
+                name: 'q8a',
+                id: 'q8_20',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q20').enable();
+                            Ext.getCmp('q21').enable();
+                            Ext.getCmp('q11').enable();
+                            Ext.getCmp('q12').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Менее 10 км2',
+                name: 'q8a',
+                id: 'q8_10',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q20').enable();
+                            Ext.getCmp('q21').enable();
+                            Ext.getCmp('q11').enable();
+                            Ext.getCmp('q12').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q8a',
+                id: 'q8_nd',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q20').disable();
+                            Ext.getCmp('q21').disable();
+                            Ext.getCmp('q11').disable();
+                            Ext.getCmp('q12').disable();
+                        }
+                    }
+                }
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q9",
+        title:"Сильно ли фрагментирована область распространения? (q9) <a href='q9.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: true,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Да',
+                name: 'q9a',
+                id: 'q9_yes',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q10').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет',
+                name: 'q9a',
+                id: 'q9_no',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q10').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q9a',
+                id: 'q9_nd',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q10').enable();
+                        }
+                    }
+                }
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q10",
+        title:"Сколько локалитетов у области распространения? (q10) <a href='q10.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: true,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Один',
+                name: 'q10a',
+                id: 'q10_1',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q9').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не более 5',
+                name: 'q10a',
+                id: 'q10_5',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q9').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не более 10',
+                name: 'q10a',
+                id: 'q10_10',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q9').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Более 10',
+                name: 'q10a',
+                id: 'q10_10m'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q10a',
+                id: 'q10_nd'
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q20",
+        title:"Сильно ли фрагментирована область обитания? (q20) <a href='q20.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled:true,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Да',
+                name: 'q20a',
+                id: 'q20_yes',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q21').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет',
+                name: 'q20a',
+                id: 'q20_no',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q21').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q20a',
+                id: 'q20_nd',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q21').enable();
+                        }
+                    }
+                }
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q21",
+        title:"Сколько локалитетов у области обитания? (q21) <a href='q21.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled:true,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Один',
+                name: 'q21a',
+                id: 'q21_1',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q20').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не более 5',
+                name: 'q21a',
+                id: 'q21_5',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q20').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не более 10',
+                name: 'q21a',
+                id: 'q21_10',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q20').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Более 10',
+                name: 'q21a',
+                id: 'q21_10m'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q21a',
+                id: 'q21_nd'
+            }]
+    },
+    {
+        xtype: 'fieldset',
+        id: 'q11',
+        title:"Снижение каких показателей продолжается? (q11) <a href='q11.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: true,
+        hidden:true,
+        items: [{
+            xtype: 'checkboxgroup',
+            id: 'q11g',
+            columns: 1,
+            hideLabel : true,
+            items: [
+                {boxLabel: 'Области распространения',name: 'i'},
+                {boxLabel: 'Области обитания',name: 'ii'},
+                {boxLabel: 'Площади, протяжённости и/или качества среды обитания',name: 'iii'},
+                {boxLabel: 'Количества локалитетов или популяций',name: 'iv'},
+                {boxLabel: 'Количества половозрелых особей',name: 'v'}
+            ]}]
+    },
+    {
+        xtype: 'fieldset',
+        id: 'q12',
+        title:"Есть ли экстремальные колебания следующих показателей? (q12) <a href='q12.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: true,
+        hidden:true,
+        items: [{
+            xtype: 'checkboxgroup',
+            id: 'q12g',
+            columns: 1,
+            hideLabel : true,
+            items: [
+                {boxLabel: 'Области распространения',name: 'i'},
+                {boxLabel: 'Области обитания',name: 'ii'},
+                {boxLabel: 'Количества локалитетов или популяций',name: 'iii'},
+                {boxLabel: 'Количества половозрелых особей',name: 'iv'}
+            ]}]
+    },
+    {
+        xtype:"fieldset",
+        id: "q13",
+        title:"Сколько половозрелых особей у вида? (q13) <a href='q13.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: false,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Менее чем 50',
+                name: 'q13a',
+                id: 'q13_50',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q14').enable();
+                            Ext.getCmp('q16').enable();
+                            Ext.getCmp('q17').enable();
+                            Ext.getCmp('q18').enable();
+                            Ext.getCmp('q16_250').disable();
+                            Ext.getCmp('q16_1000').disable();
+                            Ext.getCmp('q16_1000m').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Менее чем 250',
+                name: 'q13a',
+                id: 'q13_250',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q14').enable();
+                            Ext.getCmp('q16').enable();
+                            Ext.getCmp('q17').enable();
+                            Ext.getCmp('q18').enable();
+                            Ext.getCmp('q16_250').enable();
+                            Ext.getCmp('q16_1000').disable();
+                            Ext.getCmp('q16_1000m').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Менее чем 1000',
+                name: 'q13a',
+                id: 'q13_1000',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q14').enable();
+                            Ext.getCmp('q16').enable();
+                            Ext.getCmp('q17').enable();
+                            Ext.getCmp('q18').enable();
+                            Ext.getCmp('q16_250').enable();
+                            Ext.getCmp('q16_1000').enable();
+                            Ext.getCmp('q16_1000m').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Менее чем 2500',
+                name: 'q13a',
+                id: 'q13_2500',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q14').enable();
+                            Ext.getCmp('q16').enable();
+                            Ext.getCmp('q17').enable();
+                            Ext.getCmp('q18').enable();
+                            Ext.getCmp('q16_250').enable();
+                            Ext.getCmp('q16_1000').enable();
+                            Ext.getCmp('q16_1000m').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Менее чем 10000',
+                name: 'q13a',
+                id: 'q13_10000',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q14').enable();
+                            Ext.getCmp('q16').enable();
+                            Ext.getCmp('q17').enable();
+                            Ext.getCmp('q18').enable();
+                            Ext.getCmp('q16_250').enable();
+                            Ext.getCmp('q16_1000').enable();
+                            Ext.getCmp('q16_1000m').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Более чем 10000',
+                name: 'q13a',
+                id: 'q13_10000p',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q14').disable();
+                            Ext.getCmp('q16').disable();
+                            Ext.getCmp('q17').disable();
+                            Ext.getCmp('q18').disable();
+                            Ext.getCmp('q16_250').enable();
+                            Ext.getCmp('q16_1000').enable();
+                            Ext.getCmp('q16_1000m').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q13a',
+                id: 'q13_nd',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q14').disable();
+                            Ext.getCmp('q16').disable();
+                            Ext.getCmp('q17').disable();
+                            Ext.getCmp('q18').disable();
+                            Ext.getCmp('q16_250').enable();
+                            Ext.getCmp('q16_1000').enable();
+                            Ext.getCmp('q16_1000m').enable();
+                        }
+                    }
+                }
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q14",
+        title:"На сколько снижается численность? (q14) <a href='q14.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: true,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не менее чем на 25% за 3 года или 1 поколение',
+                name: 'q14a',
+                id: 'q14_25',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q16').disable();
+                            Ext.getCmp('q17').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не менее чем на 20% за 5 лет или 2 поколения',
+                name: 'q14a',
+                id: 'q14_20'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не менее чем на 10% за 10 лет или 3 поколения',
+                name: 'q14a',
+                id: 'q14_10'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Менее чем на 10%',
+                name: 'q14a',
+                id: 'q14_10l',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q16').enable();
+                            Ext.getCmp('q17').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q14a',
+                id: 'q14_nd',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q16').enable();
+                            Ext.getCmp('q17').enable();
+                        }
+                    }
+                }
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q16",
+        title:"Каков максимальный размер популяции? (q16) <a href='q16.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: true,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: '50 половозрелых особей',
+                name: 'q16a',
+                id: 'q16_50',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q17').enable();
+                            Ext.getCmp('q18').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: '250 половозрелых особей',
+                name: 'q16a',
+                id: 'q16_250'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: '1000 половозрелых особей',
+                name: 'q16a',
+                id: 'q16_1000'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Более 1000 половозрелых особей',
+                name: 'q16a',
+                id: 'q16_1000m'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q16a',
+                id: 'q16_nd'
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q17",
+        title:"Сколько половозрелых особей находится в одной популяции? (q17) <a href='q17.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: true,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не менее 90%',
+                name: 'q17a',
+                id: 'q17_90'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не менее 95%',
+                name: 'q17a',
+                id: 'q17_95'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Все',
+                name: 'q17a',
+                id: 'q17_100',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q16').enable();
+                            Ext.getCmp('q18').enable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q17a',
+                id: 'q17_nd'
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q18",
+        title:"Сильно ли колеблется количество половозрелых особей? (q18) <a href='q18.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: true,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Да',
+                name: 'q18a',
+                id: 'q18_yes'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет',
+                name: 'q18a',
+                id: 'q18_no'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q18a',
+                id: 'q18_nd'
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q19",
+        title:"Какова вероятность исчезновения таксона в дикой природе? (q19) <a href='q19.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: false,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не менее 50% за 10 лет или 3 поколения',
+                name: 'q19a',
+                id: 'q19_50'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не менее 20% за 20 лет или 5 поколений',
+                name: 'q19a',
+                id: 'q19_20'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Не менее 10% за 100 лет',
+                name: 'q19a',
+                id: 'q19_10'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Отсутствует',
+                name: 'q19a',
+                id: 'q19_0'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q19a',
+                id: 'q19_nd'
+            }]
+    }],
+//ANALYSIS
+    buttons:[{
+        text:'Анализ',
+        handler:function(){
+            var str = 'Категория МСОП: '
+            var results = []
+            var catsarr = []
+            var cats = ['VU','EN','CR','EW','EX']
+            
+            //vars
+            var q7_nd = Ext.getCmp('q7_nd').getValue()
+            var q7_no = Ext.getCmp('q7_no').getValue()
+            var q7_100 = Ext.getCmp('q7_100').getValue()
+            var q7_5000 = Ext.getCmp('q7_5000').getValue()
+            var q7_20000 = Ext.getCmp('q7_20000').getValue()
+            var q8_nd = Ext.getCmp('q8_nd').getValue()
+            var q8_no = Ext.getCmp('q8_no').getValue()
+            var q8_10 = Ext.getCmp('q8_10').getValue()
+            var q8_20 = Ext.getCmp('q8_20').getValue()
+            var q8_500 = Ext.getCmp('q8_500').getValue()
+            var q8_2000 = Ext.getCmp('q8_2000').getValue()
+            var q9_yes = Ext.getCmp('q9_yes').getValue()
+            var q10_1 = Ext.getCmp('q10_1').getValue()
+            var q10_5 = Ext.getCmp('q10_5').getValue()
+            var q10_10 = Ext.getCmp('q10_10').getValue()
+            var q11g = Ext.getCmp("q11g").getValue()
+            var q12g = Ext.getCmp("q12g").getValue()
+            var q13_50 = Ext.getCmp('q13_50').getValue()
+            var q13_250 = Ext.getCmp('q13_250').getValue()
+            var q13_1000 = Ext.getCmp('q13_1000').getValue()
+            var q20_yes = Ext.getCmp('q20_yes').getValue()
+            var q21_1 = Ext.getCmp('q21_1').getValue()
+            var q21_5 = Ext.getCmp('q21_5').getValue()
+            var q21_10 = Ext.getCmp('q21_10').getValue()
+            var q22_yes = Ext.getCmp('q22_yes').getValue()
+            var q23_yes = Ext.getCmp('q23_yes').getValue()
+            
+            
+            //ex,ew
+            result = ''
+            if (q22_yes) {
+                var result = 'EX';
+            } else if (q23_yes) {
+                var result = 'EW';
+            }
+            results.push(result)
+            
+            //A1,2
+            result = ''
+            if (Ext.getCmp('q1_yes').getValue() && (!Ext.getCmp('q3_nd').getValue() || !Ext.getCmp('q3_30l').getValue())) {
+                if ((Ext.getCmp('q4_yes').getValue()) && (Ext.getCmp('q5_yes').getValue()) && (Ext.getCmp('q6_yes').getValue())) {
+                    if (Ext.getCmp('q3_90').getValue()) {
+                        var result = 'CR A1';
+                    }
+                    if ((Ext.getCmp('q3_70').getValue()) || (Ext.getCmp('q3_80').getValue())) {
+                        var result = 'EN A1';
+                    }
+                    if (Ext.getCmp('q3_50').getValue()) {
+                        var result = 'VU A1';
+                    }
+                    for (i=0;i<Ext.getCmp("popupgroup").getValue().length;i++){
+                        result = result + (Ext.getCmp("popupgroup").getValue()[i].name);
+                    }
+                } else if ((Ext.getCmp('q4_yes').getValue()) || (Ext.getCmp('q5_yes').getValue()) || (Ext.getCmp('q6_yes').getValue())) {
+                    if ((Ext.getCmp('q3_80').getValue()) || (Ext.getCmp('q3_90').getValue())) {
+                        var result = 'CR A2';
+                    }
+                    if ((Ext.getCmp('q3_50').getValue()) || (Ext.getCmp('q3_70').getValue())) {
+                        var result = 'EN A2';
+                    }
+                    if (Ext.getCmp('q3_30').getValue()) {
+                        var result = 'VU A2';
+                    }
+                    for (i=0;i<Ext.getCmp("popupgroup").getValue().length;i++){
+                        result = result + (Ext.getCmp("popupgroup").getValue()[i].name);
+                    }
+                }
+                results.push(result)
+            }
+            
+            //A3
+            result = ''
+            if ((Ext.getCmp('q1_nofut').getValue())) {
+                if ((Ext.getCmp('q3_80').getValue()) || (Ext.getCmp('q3_90').getValue())) {
+                    var result = 'CR A3';
+                }
+                if ((Ext.getCmp('q3_50').getValue()) || (Ext.getCmp('q3_70').getValue())) {
+                    var result = 'EN A3';
+                }
+                if (Ext.getCmp('q3_30').getValue()) {
+                    var result = 'VU A3';
+                }
+                for (i=0;i<Ext.getCmp("popupgroup").getValue().length;i++){
+                    result = result + (Ext.getCmp("popupgroup").getValue()[i].name);
+                }
+                results.push(result)
+            }
+            
+            //A4
+            result = ''
+            if ((Ext.getCmp('q1_yesfut').getValue())) {
+                if ((Ext.getCmp('q3_80').getValue()) || (Ext.getCmp('q3_90').getValue())) {
+                    var result = 'CR A4';
+                }
+                if ((Ext.getCmp('q3_50').getValue()) || (Ext.getCmp('q3_70').getValue())) {
+                    var result = 'EN A4';
+                }
+                if (Ext.getCmp('q3_30').getValue()) {
+                    var result = 'VU A4';
+                }
+                for (i=0;i<Ext.getCmp("popupgroup").getValue().length;i++){
+                    result = result + (Ext.getCmp("popupgroup").getValue()[i].name);
+                }
+                results.push(result)
+            }
+            
+            //B1
+            result = ''
+            cat = ''
+            catnum1 = ''
+            catnum2 = ''
+            catnum3 = ''
+            indicesb = ''
+            indicesc = ''
+            
+            if (!q7_nd && !q7_no) {
+                if (q7_100) {
+                    cat = "CR"
+                    if (q10_1) {
+                        catnum1 = "a"
+                    }
+                }
+                if (q7_5000) {
+                    cat = "EN"
+                    if (q10_5 || q10_1) {
+                        catnum1 = "a"
+                    }
+                }
+                if (q7_20000) {
+                    cat = "VU"
+                    if (q10_10 || q10_5 || q10_1) {
+                        catnum1 = "a"
+                    }
+                }
+                if (q9_yes) {
+                    catnum1 = "a"
+                }
+                if (q11g.length > 0) {
+                    catnum2 = "b"
+                    //add roman indices
+                    for (i=0;i<q11g.length;i++){
+                        indicesb = indicesb + q11g[i].name + ",";
+                    }
+                    indicesb = indicesb.slice(0, -1)
+                    indicesb = "(" + indicesb + ")"
+                }
+                if (q12g.length > 0) {
+                    catnum3 = "c"
+                    //add roman indices
+                    for (i=0;i<q12g.length;i++){
+                        indicesc = indicesc + q12g[i].name + ",";
+                    }
+                    indicesc = indicesc.slice(0, -1)
+                    indicesc = "(" + indicesc + ")"
+                }
+                if (cat != '') {
+                    if ((catnum1 !='' && catnum2 !='') || (catnum2 !='' && catnum3 !='') || (catnum3 !='' && catnum1 !='')) {
+                        result = cat + " B1" +catnum1 + catnum2 + indicesb + catnum3 + indicesc
+                        results.push(result)
+                    }
+                }
+            }
+
+            //B2
+            result = ''
+            cat = ''
+            catnum1 = ''
+            catnum2 = ''
+            catnum3 = ''
+            indicesb = ''
+            indicesc = ''
+            
+            if (!q8_nd && !q8_no) {
+                if (q8_10) {
+                    cat = "CR"
+                    if (q21_1) {
+                        catnum1 = "a"
+                    }
+                }
+                if (q8_500 || q8_20) {
+                    cat = "EN"
+                    if (q21_5 || q21_1) {
+                        catnum1 = "a"
+                    }
+                }
+                if (q8_2000) {
+                    cat = "VU"
+                    if (q21_10 || q21_5 || q21_1) {
+                        catnum1 = "a"
+                    }
+                }
+                if (q20_yes) {
+                    catnum1 = "a"
+                }
+                if (q11g.length > 0) {
+                    catnum2 = "b"
+                    //add roman indices
+                    for (i=0;i<q11g.length;i++){
+                        indicesb = indicesb + q11g[i].name + ",";
+                    }
+                    indicesb = indicesb.slice(0, -1)
+                    indicesb = "(" + indicesb + ")"
+                }
+                if (q12g.length > 0) {
+                    catnum3 = "c"
+                    //add roman indices
+                    for (i=0;i<q12g.length;i++){
+                        indicesc = indicesc + q12g[i].name + ",";
+                    }
+                    indicesc = indicesc.slice(0, -1)
+                    indicesc = "(" + indicesc + ")"
+                }
+                if (cat != '') {
+                    if ((catnum1 !='' && catnum2 !='') || (catnum2 !='' && catnum3 !='') || (catnum3 !='' && catnum1 !='')) {
+                        result = cat + " B2" +catnum1 + catnum2 + indicesb + catnum3 + indicesc
+                        results.push(result)
+                    }
+                }
+            }
+            
+            //C
+            result = ''
+            cat = ''
+            catnum1 = ''
+            catnum2a = false
+            catnum2b = false
+            if (!(Ext.getCmp('q13_nd').getValue()) && !(Ext.getCmp('q13_10000p').getValue())) {
+                if (Ext.getCmp('q13_250').getValue() || Ext.getCmp('q13_50').getValue()) {
+                    cat = "CR"
+                    if (Ext.getCmp('q14_25').getValue()) {
+                        catnum1 = "1"
+                    }
+                    if (Ext.getCmp('q16_50').getValue()) {
+                        catnum1 = "2a"
+                        catnum2a = true
+                    }
+                    if (Ext.getCmp('q17_90').getValue() || Ext.getCmp('q17_95').getValue() || Ext.getCmp('q17_100').getValue()) {
+                        catnum1 = "2a"
+                        catnum2b = true
+                    }
+                    if (Ext.getCmp('q18_yes').getValue()) {
+                        catnum1 = "2b"
+                    }
+                }
+                if (Ext.getCmp('q13_2500').getValue()) {
+                    cat = "EN"
+                    if (Ext.getCmp('q14_20').getValue() || Ext.getCmp('q14_25').getValue()) {
+                        catnum1 = "1"
+                    }
+                    if (Ext.getCmp('q16_250').getValue() || Ext.getCmp('q16_50').getValue()) {
+                        catnum1 = "2a"
+                        catnum2a = true
+                    }
+                    if (Ext.getCmp('q17_95').getValue() || Ext.getCmp('q17_100').getValue()) {
+                        catnum1 = "2a"
+                        catnum2b = true
+                    }
+                    if (Ext.getCmp('q18_yes').getValue()) {
+                        catnum1 = "2b"
+                    }
+                }
+                if (Ext.getCmp('q13_10000').getValue()) {
+                    cat = "VU"
+                    if (Ext.getCmp('q14_10').getValue() || Ext.getCmp('q14_20').getValue() || Ext.getCmp('q14_25').getValue()) {
+                        catnum1 = "1"
+                    }
+                    if (Ext.getCmp('q16_1000').getValue() || Ext.getCmp('q16_250').getValue() || Ext.getCmp('q16_50').getValue()) {
+                        catnum1 = "2a"
+                        catnum2a = true
+                    }
+                    if (Ext.getCmp('q17_100').getValue()) {
+                        catnum1 = "2a"
+                        catnum2b = true
+                    }
+                    if (Ext.getCmp('q18_yes').getValue()) {
+                        catnum1 = "2b"
+                    }
+                }
+                if (cat != '' && catnum1 != '') {
+                    result = cat + " C" + catnum1
+                    if (catnum2a && catnum2b) {
+                        result = result + "(i,ii)"
+                    } else if (catnum2a) {
+                        result = result + "(i)"
+                    } else if (catnum2b) {
+                        result = result + "(ii)"
+                    }
+                }
+                results.push(result)
+            }
+
+            //D
+            result = ''
+            if (q13_50) {
+                results.push('CR D');
+            } else if (q13_250) {
+                results.push('EN D');
+            }
+            if (q13_1000) {
+                results.push('VU D1');
+            } else if (q8_20 || q8_10 || q21_1 || q21_5) {
+                results.push('VU D2');
+            }
+
+            //E
+            result = ''
+            if (Ext.getCmp('q19_50').getValue()) {
+                var result = 'CR E';
+            } else if (Ext.getCmp('q19_20').getValue()) {
+                var result = 'EN E';
+            } else if (Ext.getCmp('q19_10').getValue()) {
+                var result = 'VU E';
+            }
+            if (result != '') {results.push(result);}
+            
+            //Determine maximum category
+            for (i=0;i<results.length;i++){
+                curcat = results[i].substring(0,2)
+                if (curcat == 'VU') {catsarr.push(0)}
+                else if (curcat == 'EN') {catsarr.push(1)}
+                else if (curcat == 'CR') {catsarr.push(2)}
+                else if (curcat == 'EW') {catsarr.push(3)}
+                else if (curcat == 'EX') {catsarr.push(4)}
+            }
+            Array.max = function( array ){
+                return Math.max.apply( Math, array );
+            };
+            maxcat = cats[Array.max(catsarr)]
+            
+            //Output results
+            resstr = ''
+            for (i=0;i<results.length;i++){
+                if (results[i] != undefined && results[i] != '' && results[i].substring(0,2) == maxcat) {
+                    resstr = resstr + results[i] + "<br/>";
+                }
+            }
+            
+            if (resstr == '') {
+                resstr = "Недостаточно данных. <br/>Категорию МСОП определить не удалось."
+            }
+            
+            iucn_text = 'Название вида (если введено): '+window.iucn_name+'<br/>'+'Официальная категория: '+window.iucn_cat+'<br/>';
+            
+            Ext.Msg.alert('Результаты',iucn_text+'Соответствующие категории МСОП:<br/>'+resstr)
+            //Ext.Msg.alert('Результат <br/>',str + result);
+        }}]
+});
+popupform = new Ext.FormPanel({
+    labelWidth:100,
+    frame:false,
+    width:300,
+    items:[{
+        xtype: 'checkboxgroup',
+        id: 'popupgroup',
+        hideLabel : true,
+        columns: 1,
+        items: [
+            {boxLabel: 'a. прямое наблюдение',name: 'a'},
+            {boxLabel: 'b. индекс обилия, приемлемый для таксона',name: 'b'},
+            {boxLabel: 'c. сокращение области распространения, области обитания и/или качества среды обитания',name: 'c'},
+            {boxLabel: 'd. реальный или потенциальный уровень эксплуатации',name: 'd'},
+            {boxLabel: 'e. влияние интродуцентов, гибридизации, патогенов, поллютантов, конкурентов или паразитов',name: 'e'}
+        ]
+    }]
+});
+dlgPopup = new Ext.Window({
+    title: 'Показатели на основе которых делается это утверждение',
+    modal:true,
+    layout:'fit',
+    width:600,
+    height:200,
+    closable:false,
+    resizable:false,
+    plain:true,
+    items:[popupform],
+    buttons:[{
+        text:'Выбрать',
+        handler:function(){
+            dlgPopup.hide();
+        }
+    }, {
+        text:'Отмена',
+        handler:function() {
+            dlgPopup.hide();
+        }
+    }]
+});
+form.render(document.body);
+});
+</script>
+
+</head>
+<body>
+<b>IUCN Criteria: <a href="http://www.iucnredlist.org/documents/2001RedListCats_Crit_Russian.pdf" target="blank">Russian</a>, <a href="http://intranet.iucn.org/webfiles/doc/SSC/RedList/redlistcatsenglish.pdf" target="blank">English</a></b><br>
+<b>Guidelines for Application of IUCN Red List Criteria at Regional Levels Version 3.0: <a href="http://intranet.iucn.org/webfiles/doc/SSC/SSCwebsite/Red_List/regionalguidelinesEn.pdf" target="blank">English</a></b><br><br>
+
+<p>Ответьте на максимальное возможное количество вопросов и нажмите на кнопку "Анализ", которая находится в конце формы. Если вы не ответили на достаточное количество вопросов для определения категории ее расчет может быть невозможен. 
+<p>Разработка: Максим Дубинин (<a href=",mailto:sim@gis-lab.info">sim@gis-lab.info)</a>. </p>
+<p>Версия: 1.6 (3 октября 2011)</p>
+<br><br>
+<div style="width:600px;">
+    <div class="x-box-tl"><div class="x-box-tr"><div class="x-box-tc"></div></div></div>
+    <div class="x-box-ml"><div class="x-box-mr"><div class="x-box-mc">
+        <h3 style="margin-bottom:5px;">Найти вид в базе данных МСОП</h3>
+        <input type="text" size="40" name="search" id="search" />
+        <div style="padding-top:4px;">
+            Для поиска введите минимум 4 любых символа латинского наименования вида.
+        </div>
+    </div></div></div>
+    <div class="x-box-bl"><div class="x-box-br"><div class="x-box-bc"></div></div></div>
+</div>
+</body>
+</html>
