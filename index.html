@@ -8,7 +8,13 @@
 <script type="text/javascript" src="../rostov/libs/ext-3.3.1/ext-all.js"></script>
 <script type="text/javascript">
 var iucn_name;
+window.iucn_name = "";
 var iucn_cat;
+window.iucn_name = "";
+//help messages
+
+q0_help = "Выберите один или несколько параметров по которым у вас есть данные или понимание динамики вида на вашей территории. \nВ дальнейшем можно возвращаться и добавлять/убирать параметры. \nПоставьте все галочки, если вы не уверены.";
+q7_help = "Область распространения - пространство внутри кратчайшей непрерывной воображаемой границы, включающей все известные, подразумеваемые или прогнозируемые современные местонахождения таксона, исключая случайные встречи. \nПлощадь области распространения может не включать в себя разрывы или дизъюнкции внутри всего ареала таксона, например, крупные участки с явно неподходящей для таксона средой обитания (но см. “область обитания”). Область распространения часто может быть оценена методом минимального выпуклого многоугольника (наименьший многоугольник, в котором ни один внутренний угол не превышает 180, и который содержит все местонахождения таксона).";
 Ext.onReady(function() {
 Ext.QuickTips.init();
 var ds = new Ext.data.Store({
@@ -37,7 +43,7 @@ var ds = new Ext.data.Store({
         store: ds,
         displayField:'latin',
         typeAhead: false,
-        loadingText: 'Searching...',
+        loadingText: 'Подождите, идет поиск в базе...',
         width: 570,
         pageSize:200,
         hideTrigger:true,
@@ -59,7 +65,7 @@ items: [
         {
             xtype: 'fieldset',
             id: 'q0',
-            title:"По каким параметрам нужно провести оценку? (q0) <a href='q0.html' target='_blank'><img src=\"q.png\"></a>",
+            title:"По каким параметрам нужно провести оценку? (q0) <a href='javascript:alert(q0_help);'><img src=\"q.png\"></a>",
             disabled: false,
             items: [{
                 xtype: 'checkboxgroup',
@@ -172,8 +178,20 @@ items: [
                             "check" : function(chckbx,state){
                                 if (state) {
                                     Ext.getCmp('q24').show();
+                                    Ext.getCmp('q25').show();
+                                    Ext.getCmp('q26').show();
+                                    Ext.getCmp('q27').show();
+                                    Ext.getCmp('q28').show();
+                                    Ext.getCmp('q29').show();
+                                    Ext.getCmp('q30').show();
                                 } else {
                                     Ext.getCmp('q24').hide();
+                                    Ext.getCmp('q25').hide();
+                                    Ext.getCmp('q26').hide();
+                                    Ext.getCmp('q27').hide();
+                                    Ext.getCmp('q28').hide();
+                                    Ext.getCmp('q29').hide();
+                                    Ext.getCmp('q30').hide();
                                 }
                             }
                         }
@@ -285,7 +303,7 @@ items: [
         {
         xtype:"fieldset",
         id: "q1",
-        title:"Сокращается ли численность вида в последние 10 лет или 3 поколения? (q1) <a href='q1.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Сокращается ли численность вида в последние 10 лет или 3 поколения? (q1) <a href='alert(123)' target='_blank'><img src=\"q.png\"></a>",
         //autoHeight:true,
         hidden:true,
         items: [
@@ -2018,9 +2036,10 @@ items: [
                 resstr = "Недостаточно данных. <br/>Категорию МСОП определить не удалось."
             }
             
-            iucn_text = 'Название вида (если введено): '+window.iucn_name+'<br/>'+'Официальная категория: '+window.iucn_cat+'<br/>';
+			if (window.iucn_name == "") {window.iucn_name = "Вид не выбран в строке поиска или не найден в базе МСОП"}
+            iucn_text = '<br/>Название вида:<br/>'+window.iucn_name+'<br/>'+'<br/>Официальная категория:<br/>'+window.iucn_cat+'<br/>';
             
-            Ext.Msg.alert('Результаты',iucn_text+'Соответствующие категории МСОП:<br/>'+resstr)
+            Ext.Msg.alert('Результаты',iucn_text+'<br/>Расчетные категории:<br/>'+resstr)
             //Ext.Msg.alert('Результат <br/>',str + result);
         }}]
 });
@@ -2081,7 +2100,7 @@ form.render(document.body);
 <div style="width:600px;">
     <div class="x-box-tl"><div class="x-box-tr"><div class="x-box-tc"></div></div></div>
     <div class="x-box-ml"><div class="x-box-mr"><div class="x-box-mc">
-        <h3 style="margin-bottom:5px;">Найти вид в базе данных МСОП</h3>
+        <h3 style="margin-bottom:5px;">Найти вид в базе данных МСОП (необязательно)</h3>
         <input type="text" size="40" name="search" id="search" />
         <div style="padding-top:4px;">
             Для поиска введите минимум 4 любых символа латинского наименования вида.
