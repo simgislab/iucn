@@ -166,6 +166,17 @@ items: [
                                 }
                             }
                         }
+                    },
+                    {boxLabel: 'Региональная поправка',name: 'f',
+                        listeners: {
+                            "check" : function(chckbx,state){
+                                if (state) {
+                                    Ext.getCmp('q24').show();
+                                } else {
+                                    Ext.getCmp('q24').hide();
+                                }
+                            }
+                        }
                     }
                 ]}]
         },
@@ -1445,7 +1456,37 @@ items: [
                 name: 'q19a',
                 id: 'q19_nd'
             }]
-    }],
+    },
+    {
+        xtype:"fieldset",
+        id: "q24",
+        title:"Является ли вид заносным и неразмножающимся на территории? (q24) <a href='q24.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: true,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Да',
+                name: 'q24a',
+                id: 'q24_yes'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет',
+                name: 'q24a',
+                id: 'q24_no'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q24a',
+                id: 'q24_nd'
+            }]
+    }]
 //ANALYSIS
     buttons:[{
         text:'Анализ',
