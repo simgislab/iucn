@@ -1460,8 +1460,8 @@ items: [
     {
         xtype:"fieldset",
         id: "q24",
-        title:"Является ли вид заносным и неразмножающимся на территории? (q24) <a href='q24.html' target='_blank'><img src=\"q.png\"></a>",
-        disabled: true,
+        title:"Является ли вид заносным и неразмножающимся в регионе? (q24) <a href='q24.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: false,
         autoHeight:true,
         hidden:true,
         items: [
@@ -1486,7 +1486,187 @@ items: [
                 name: 'q24a',
                 id: 'q24_nd'
             }]
-    }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q25",
+        title:"Ухудшаются ли условия вне региона? (q25) <a href='q25.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: false,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Да',
+                name: 'q25a',
+                id: 'q25_yes'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет',
+                name: 'q25a',
+                id: 'q25_no'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q25a',
+                id: 'q25_nd'
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q26",
+        title:"Является иммиграция особей извне способных размножаться важным фактором для региональной популяции? (q26) <a href='q26.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: false,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Да',
+                name: 'q26a',
+                id: 'q26_yes'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет',
+                name: 'q26a',
+                id: 'q26_no'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q26a',
+                id: 'q26_nd'
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q27",
+        title:"Ожидается ли снижение иммиграции? (q27) <a href='q27.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: false,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Да',
+                name: 'q27a',
+                id: 'q27_yes'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет',
+                name: 'q27a',
+                id: 'q27_no'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q27a',
+                id: 'q27_nd'
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q28",
+        title:"Ухудшаются ли условия в регионе? (q28) <a href='q28.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: false,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Да',
+                name: 'q28a',
+                id: 'q28_yes'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет',
+                name: 'q28a',
+                id: 'q28_no'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q28a',
+                id: 'q28_nd'
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q29",
+        title:"Является ли региональная популяция приемником? (q29) <a href='q29.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: false,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Да',
+                name: 'q29a',
+                id: 'q29_yes'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет',
+                name: 'q29a',
+                id: 'q29_no'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q29a',
+                id: 'q29_nd'
+            }]
+    },
+    {
+        xtype:"fieldset",
+        id: "q30",
+        title:"Может ли размножающаяся популяция покинуть региональную популяцию в случае уменьшения последней? (q30) <a href='q30.html' target='_blank'><img src=\"q.png\"></a>",
+        disabled: false,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Да',
+                name: 'q30a',
+                id: 'q30_yes'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет',
+                name: 'q30a',
+                id: 'q30_no'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q30a',
+                id: 'q30_nd'
+            }]
+    }],
 //ANALYSIS
     buttons:[{
         text:'Анализ',
