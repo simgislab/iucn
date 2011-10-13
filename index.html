@@ -8,6 +8,7 @@
 <script type="text/javascript" src="../rostov/libs/ext-3.3.1/adapter/ext/ext-base.js"></script>
 <script type="text/javascript" src="../rostov/libs/ext-3.3.1/ext-all.js"></script>
 <script type="text/javascript" src="indexof.js"></script>
+<script type="text/javascript" src="help.js"></script>
 <script type="text/javascript">
 var iucn_name;
 window.iucn_name = "";
@@ -15,39 +16,6 @@ var iucn_cat;
 window.iucn_cat = "";
 var iucn_cat_reg;
 window.iucn_cat_reg = "";
-
-//help messages
-q0_help = "Выберите один или несколько параметров по которым у вас есть данные или понимание динамики вида на вашей территории. \nВ дальнейшем можно возвращаться и добавлять/убирать параметры. \nПоставьте все галочки, если вы не уверены.";
-q1_help = "";
-q2_help = "";
-q3_help = "";
-q4_help = "";
-q5_help = "";
-q6_help = "";
-q7_help = "Область распространения - пространство внутри кратчайшей непрерывной воображаемой границы, включающей все известные, подразумеваемые или прогнозируемые современные местонахождения таксона, исключая случайные встречи. \nПлощадь области распространения может не включать в себя разрывы или дизъюнкции внутри всего ареала таксона, например, крупные участки с явно неподходящей для таксона средой обитания (но см. “область обитания”). Область распространения часто может быть оценена методом минимального выпуклого многоугольника (наименьший многоугольник, в котором ни один внутренний угол не превышает 180, и который содержит все местонахождения таксона).";
-q8_help = "";
-q9_help = "";
-q10_help = "";
-q11_help = "";
-q12_help = "";
-q13_help = "";
-q14_help = "";
-q15_help = "";
-q16_help = "";
-q17_help = "";
-q18_help = "";
-q19_help = "";
-q20_help = "";
-q21_help = "";
-q22_help = "";
-q23_help = "";
-q24_help = "";
-q25_help = "";
-q26_help = "";
-q27_help = "";
-q28_help = "";
-q29_help = "";
-q30_help = "";
 
 Ext.onReady(function() {
 Ext.QuickTips.init();
@@ -2141,6 +2109,7 @@ items: [
             }
             
 			if (window.iucn_name == "") {window.iucn_name = "Вид не выбран в строке поиска или не найден в базе МСОП"}
+            if (window.iucn_cat == "") {window.iucn_cat = "Официальной категории нет, так не указан вид"}
             iucn_text = '<br/>Название вида:<br/>'+window.iucn_name+'<br/>'+'<br/>Официальная категория:<br/>'+window.iucn_cat+'<br/>';
             
 			//Ouput regional correction
