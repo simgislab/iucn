@@ -3,18 +3,52 @@
 <head>
 <title>Расчет категории IUCN</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
 <link rel="stylesheet" href="../rostov/libs/ext-3.3.1/resources/css/ext-all.css" type="text/css">
 <script type="text/javascript" src="../rostov/libs/ext-3.3.1/adapter/ext/ext-base.js"></script>
 <script type="text/javascript" src="../rostov/libs/ext-3.3.1/ext-all.js"></script>
+<script type="text/javascript" src="indexof.js"></script>
 <script type="text/javascript">
 var iucn_name;
 window.iucn_name = "";
 var iucn_cat;
-window.iucn_name = "";
-//help messages
+window.iucn_cat = "";
+var iucn_cat_reg;
+window.iucn_cat_reg = "";
 
+//help messages
 q0_help = "Выберите один или несколько параметров по которым у вас есть данные или понимание динамики вида на вашей территории. \nВ дальнейшем можно возвращаться и добавлять/убирать параметры. \nПоставьте все галочки, если вы не уверены.";
+q1_help = "";
+q2_help = "";
+q3_help = "";
+q4_help = "";
+q5_help = "";
+q6_help = "";
 q7_help = "Область распространения - пространство внутри кратчайшей непрерывной воображаемой границы, включающей все известные, подразумеваемые или прогнозируемые современные местонахождения таксона, исключая случайные встречи. \nПлощадь области распространения может не включать в себя разрывы или дизъюнкции внутри всего ареала таксона, например, крупные участки с явно неподходящей для таксона средой обитания (но см. “область обитания”). Область распространения часто может быть оценена методом минимального выпуклого многоугольника (наименьший многоугольник, в котором ни один внутренний угол не превышает 180, и который содержит все местонахождения таксона).";
+q8_help = "";
+q9_help = "";
+q10_help = "";
+q11_help = "";
+q12_help = "";
+q13_help = "";
+q14_help = "";
+q15_help = "";
+q16_help = "";
+q17_help = "";
+q18_help = "";
+q19_help = "";
+q20_help = "";
+q21_help = "";
+q22_help = "";
+q23_help = "";
+q24_help = "";
+q25_help = "";
+q26_help = "";
+q27_help = "";
+q28_help = "";
+q29_help = "";
+q30_help = "";
+
 Ext.onReady(function() {
 Ext.QuickTips.init();
 var ds = new Ext.data.Store({
@@ -201,7 +235,7 @@ items: [
         {
             xtype:"fieldset",
             id: "q22",
-            title:"Исчез ли вид окончательно? (q22) <a href='q22.html' target='_blank'><img src=\"q.png\"></a>",
+            title:"Исчез ли вид окончательно? (q22) <a href='javascript:alert(q22_help);'><img src=\"q.png\"></a>",
             autoHeight:true,
             hidden:true,
             items: [
@@ -252,7 +286,7 @@ items: [
         {
             xtype:"fieldset",
             id: "q23",
-            title:"Исчез ли вид только дикой природе? (q23) <a href='q23.html' target='_blank'><img src=\"q.png\"></a>",
+            title:"Исчез ли вид только дикой природе? (q23) <a href='javascript:alert(q23_help);'><img src=\"q.png\"></a>",
             autoHeight:true,
             hidden:true,
             items: [
@@ -303,7 +337,7 @@ items: [
         {
         xtype:"fieldset",
         id: "q1",
-        title:"Сокращается ли численность вида в последние 10 лет или 3 поколения? (q1) <a href='alert(123)' target='_blank'><img src=\"q.png\"></a>",
+        title:"Сокращается ли численность вида в последние 10 лет или 3 поколения? (q1) <a href='javascript:alert(qalert(123)' target='_blank'><img src=\"q.png\"></a>",
         //autoHeight:true,
         hidden:true,
         items: [
@@ -400,7 +434,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q3",
-        title:"На сколько сократилась численность (или сократится в будущем)? (q3) <a href='q3.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"На сколько сократилась численность (или сократится в будущем)? (q3) <a href='javascript:alert(q3_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -527,7 +561,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q4",
-        title:"Устранены ли причины сокращения численности? (q4) <a href='q4.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Устранены ли причины сокращения численности? (q4) <a href='javascript:alert(q4_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -558,7 +592,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q5",
-        title:"Обратимы ли причины сокращения численности? (q5) <a href='q5.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Обратимы ли причины сокращения численности? (q5) <a href='javascript:alert(q5_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -588,7 +622,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q6",
-        title:"Объяснимы ли причины сокращения численности? (q6) <a href='q6.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Объяснимы ли причины сокращения численности? (q6) <a href='javascript:alert(q6_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -618,7 +652,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q7",
-        title:"Каковы размеры области распространения? (q7) <a href='q7.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Каковы размеры области распространения? (q7) <a href='javascript:alert(q7_help);'><img src=\"q.png\"></a>",
         autoHeight:true,
         hidden:true,
         items: [
@@ -711,7 +745,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q8",
-        title:"Каковы размеры области обитания? (q8) <a href='q8.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Каковы размеры области обитания? (q8) <a href='javascript:alert(q8_help);'><img src=\"q.png\"></a>",
         autoHeight:true,
         hidden:true,
         items: [
@@ -821,7 +855,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q9",
-        title:"Сильно ли фрагментирована область распространения? (q9) <a href='q9.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Сильно ли фрагментирована область распространения? (q9) <a href='javascript:alert(q9_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -872,7 +906,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q10",
-        title:"Сколько локалитетов у области распространения? (q10) <a href='q10.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Сколько локалитетов у области распространения? (q10) <a href='javascript:alert(q10_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -937,7 +971,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q20",
-        title:"Сильно ли фрагментирована область обитания? (q20) <a href='q20.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Сильно ли фрагментирована область обитания? (q20) <a href='javascript:alert(q20_help);'><img src=\"q.png\"></a>",
         disabled:true,
         autoHeight:true,
         hidden:true,
@@ -988,7 +1022,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q21",
-        title:"Сколько локалитетов у области обитания? (q21) <a href='q21.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Сколько локалитетов у области обитания? (q21) <a href='javascript:alert(q21_help);'><img src=\"q.png\"></a>",
         disabled:true,
         autoHeight:true,
         hidden:true,
@@ -1053,7 +1087,7 @@ items: [
     {
         xtype: 'fieldset',
         id: 'q11',
-        title:"Снижение каких показателей продолжается? (q11) <a href='q11.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Снижение каких показателей продолжается? (q11) <a href='javascript:alert(q11_help);'><img src=\"q.png\"></a>",
         disabled: true,
         hidden:true,
         items: [{
@@ -1072,7 +1106,7 @@ items: [
     {
         xtype: 'fieldset',
         id: 'q12',
-        title:"Есть ли экстремальные колебания следующих показателей? (q12) <a href='q12.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Есть ли экстремальные колебания следующих показателей? (q12) <a href='javascript:alert(q12_help);'><img src=\"q.png\"></a>",
         disabled: true,
         hidden:true,
         items: [{
@@ -1090,7 +1124,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q13",
-        title:"Сколько половозрелых особей у вида? (q13) <a href='q13.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Сколько половозрелых особей у вида? (q13) <a href='javascript:alert(q13_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1239,7 +1273,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q14",
-        title:"На сколько снижается численность? (q14) <a href='q14.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"На сколько снижается численность? (q14) <a href='javascript:alert(q14_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -1307,7 +1341,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q16",
-        title:"Каков максимальный размер популяции? (q16) <a href='q16.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Каков максимальный размер популяции? (q16) <a href='javascript:alert(q16_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -1359,7 +1393,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q17",
-        title:"Сколько половозрелых особей находится в одной популяции? (q17) <a href='q17.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Сколько половозрелых особей находится в одной популяции? (q17) <a href='javascript:alert(q17_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -1404,7 +1438,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q18",
-        title:"Сильно ли колеблется количество половозрелых особей? (q18) <a href='q18.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Сильно ли колеблется количество половозрелых особей? (q18) <a href='javascript:alert(q18_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -1434,7 +1468,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q19",
-        title:"Какова вероятность исчезновения таксона в дикой природе? (q19) <a href='q19.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Какова вероятность исчезновения таксона в дикой природе? (q19) <a href='javascript:alert(q19_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1478,7 +1512,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q24",
-        title:"Является ли вид заносным и неразмножающимся в регионе? (q24) <a href='q24.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Является ли таксон заносным и неразмножающимся в регионе? (q24) <a href='javascript:alert(q24_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1508,7 +1542,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q25",
-        title:"Ухудшаются ли условия вне региона? (q25) <a href='q25.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Ухудшаются ли условия вне региона? (q25) <a href='javascript:alert(q25_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1538,7 +1572,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q26",
-        title:"Является иммиграция особей извне способных размножаться важным фактором для региональной популяции? (q26) <a href='q26.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Является иммиграция особей извне способных размножаться важным фактором для региональной популяции? (q26) <a href='javascript:alert(q26_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1568,7 +1602,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q27",
-        title:"Ожидается ли снижение иммиграции? (q27) <a href='q27.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Ожидается ли снижение иммиграции? (q27) <a href='javascript:alert(q27_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1598,7 +1632,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q28",
-        title:"Ухудшаются ли условия в регионе? (q28) <a href='q28.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Ухудшаются ли условия в регионе? (q28) <a href='javascript:alert(q28_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1628,7 +1662,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q29",
-        title:"Является ли региональная популяция приемником? (q29) <a href='q29.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Является ли региональная популяция приемником? (q29) <a href='javascript:alert(q29_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1658,7 +1692,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q30",
-        title:"Может ли размножающаяся популяция покинуть региональную популяцию в случае уменьшения последней? (q30) <a href='q30.html' target='_blank'><img src=\"q.png\"></a>",
+        title:"Может ли размножающаяся популяция покинуть региональную популяцию в случае уменьшения последней? (q30) <a href='javascript:alert(q30_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1689,40 +1723,83 @@ items: [
     buttons:[{
         text:'Анализ',
         handler:function(){
-            var str = 'Категория МСОП: '
-            var results = []
-            var catsarr = []
-            var cats = ['VU','EN','CR','EW','EX']
+            var str = 'Категория МСОП: ';
+            var results = [];
+            var catsarr = [];
+            var cats = ['VU','EN','CR','EW','EX'];
             
             //vars
-            var q7_nd = Ext.getCmp('q7_nd').getValue()
-            var q7_no = Ext.getCmp('q7_no').getValue()
-            var q7_100 = Ext.getCmp('q7_100').getValue()
-            var q7_5000 = Ext.getCmp('q7_5000').getValue()
-            var q7_20000 = Ext.getCmp('q7_20000').getValue()
-            var q8_nd = Ext.getCmp('q8_nd').getValue()
-            var q8_no = Ext.getCmp('q8_no').getValue()
-            var q8_10 = Ext.getCmp('q8_10').getValue()
-            var q8_20 = Ext.getCmp('q8_20').getValue()
-            var q8_500 = Ext.getCmp('q8_500').getValue()
-            var q8_2000 = Ext.getCmp('q8_2000').getValue()
-            var q9_yes = Ext.getCmp('q9_yes').getValue()
-            var q10_1 = Ext.getCmp('q10_1').getValue()
-            var q10_5 = Ext.getCmp('q10_5').getValue()
-            var q10_10 = Ext.getCmp('q10_10').getValue()
-            var q11g = Ext.getCmp("q11g").getValue()
-            var q12g = Ext.getCmp("q12g").getValue()
-            var q13_50 = Ext.getCmp('q13_50').getValue()
-            var q13_250 = Ext.getCmp('q13_250').getValue()
-            var q13_1000 = Ext.getCmp('q13_1000').getValue()
-            var q20_yes = Ext.getCmp('q20_yes').getValue()
-            var q21_1 = Ext.getCmp('q21_1').getValue()
-            var q21_5 = Ext.getCmp('q21_5').getValue()
-            var q21_10 = Ext.getCmp('q21_10').getValue()
-            var q22_yes = Ext.getCmp('q22_yes').getValue()
-            var q23_yes = Ext.getCmp('q23_yes').getValue()
-            
-            
+            var q1_nofut = Ext.getCmp('q1_nofut').getValue();
+			var q1_yesfut = Ext.getCmp('q1_yesfut').getValue();
+            var q1_yes = Ext.getCmp('q1_yes').getValue();
+			var q3_nd = Ext.getCmp('q3_nd').getValue();
+			var q3_30 = Ext.getCmp('q3_30').getValue();
+			var q3_50 = Ext.getCmp('q3_50').getValue();
+			var q3_70 = Ext.getCmp('q3_70').getValue();
+			var q3_80 = Ext.getCmp('q3_80').getValue();
+			var q3_90 = Ext.getCmp('q3_90').getValue();
+			var q3_30l = Ext.getCmp('q3_30l').getValue();
+			var q4_yes = Ext.getCmp('q4_yes').getValue();
+			var q5_yes = Ext.getCmp('q5_yes').getValue();
+			var q6_yes = Ext.getCmp('q6_yes').getValue();
+			var q7_nd = Ext.getCmp('q7_nd').getValue();
+            var q7_no = Ext.getCmp('q7_no').getValue();
+            var q7_100 = Ext.getCmp('q7_100').getValue();
+            var q7_5000 = Ext.getCmp('q7_5000').getValue();
+            var q7_20000 = Ext.getCmp('q7_20000').getValue();
+            var q8_nd = Ext.getCmp('q8_nd').getValue();
+            var q8_no = Ext.getCmp('q8_no').getValue();
+            var q8_10 = Ext.getCmp('q8_10').getValue();
+            var q8_20 = Ext.getCmp('q8_20').getValue();
+            var q8_500 = Ext.getCmp('q8_500').getValue();
+            var q8_2000 = Ext.getCmp('q8_2000').getValue();
+            var q9_yes = Ext.getCmp('q9_yes').getValue();
+            var q10_1 = Ext.getCmp('q10_1').getValue();
+            var q10_5 = Ext.getCmp('q10_5').getValue();
+            var q10_10 = Ext.getCmp('q10_10').getValue();
+            var q11g = Ext.getCmp("q11g").getValue();
+            var q12g = Ext.getCmp("q12g").getValue();
+            var q13_nd = Ext.getCmp('q13_nd').getValue();
+			var q13_50 = Ext.getCmp('q13_50').getValue();
+            var q13_250 = Ext.getCmp('q13_250').getValue();
+            var q13_1000 = Ext.getCmp('q13_1000').getValue();
+			var q13_2500 = Ext.getCmp('q13_2500').getValue();
+			var q13_10000p = Ext.getCmp('q13_10000p').getValue();
+            var q14_25 = Ext.getCmp('q14_25').getValue();
+			var q16_50 = Ext.getCmp('q16_50').getValue();
+			var q17_90 = Ext.getCmp('q17_90').getValue();
+			var q17_95 = Ext.getCmp('q17_95').getValue();
+			var q17_100 = Ext.getCmp('q17_100').getValue();
+			var q18_yes = Ext.getCmp('q18_yes').getValue();
+			var q20_yes = Ext.getCmp('q20_yes').getValue();
+            var q21_1 = Ext.getCmp('q21_1').getValue();
+            var q21_5 = Ext.getCmp('q21_5').getValue();
+            var q21_10 = Ext.getCmp('q21_10').getValue();
+            var q22_yes = Ext.getCmp('q22_yes').getValue();
+            var q23_yes = Ext.getCmp('q23_yes').getValue();
+			var q24_yes = Ext.getCmp('q24_yes').getValue();
+			var q24_no = Ext.getCmp('q24_no').getValue();
+			var q24_nd = Ext.getCmp('q24_nd').getValue();
+			var q25_yes = Ext.getCmp('q25_yes').getValue();
+			var q25_no = Ext.getCmp('q25_no').getValue();
+			var q25_nd = Ext.getCmp('q25_nd').getValue();
+            var q26_yes = Ext.getCmp('q26_yes').getValue();
+			var q26_no = Ext.getCmp('q26_no').getValue();
+			var q26_nd = Ext.getCmp('q26_nd').getValue();
+            var q27_yes = Ext.getCmp('q27_yes').getValue();
+			var q27_no = Ext.getCmp('q27_no').getValue();
+			var q27_nd = Ext.getCmp('q27_nd').getValue();
+			var q28_yes = Ext.getCmp('q28_yes').getValue();
+			var q28_no = Ext.getCmp('q28_no').getValue();
+			var q28_nd = Ext.getCmp('q28_nd').getValue();
+			var q29_yes = Ext.getCmp('q29_yes').getValue();
+			var q29_no = Ext.getCmp('q29_no').getValue();
+			var q29_nd = Ext.getCmp('q29_nd').getValue();
+			var q30_yes = Ext.getCmp('q30_yes').getValue();
+			var q30_no = Ext.getCmp('q30_no').getValue();
+			var q30_nd = Ext.getCmp('q30_nd').getValue();
+			var popupgroup = Ext.getCmp("popupgroup").getValue();
+			
             //ex,ew
             result = ''
             if (q22_yes) {
@@ -1730,75 +1807,75 @@ items: [
             } else if (q23_yes) {
                 var result = 'EW';
             }
-            results.push(result)
+            results.push(result);
             
             //A1,2
             result = ''
-            if (Ext.getCmp('q1_yes').getValue() && (!Ext.getCmp('q3_nd').getValue() || !Ext.getCmp('q3_30l').getValue())) {
-                if ((Ext.getCmp('q4_yes').getValue()) && (Ext.getCmp('q5_yes').getValue()) && (Ext.getCmp('q6_yes').getValue())) {
-                    if (Ext.getCmp('q3_90').getValue()) {
+            if (q1_yes && (!q3_nd || !q3_30l)) {
+                if (q4_yes && q5_yes && q6_yes) {
+                    if (q3_90) {
                         var result = 'CR A1';
                     }
-                    if ((Ext.getCmp('q3_70').getValue()) || (Ext.getCmp('q3_80').getValue())) {
+                    if (q3_70 || q3_80) {
                         var result = 'EN A1';
                     }
-                    if (Ext.getCmp('q3_50').getValue()) {
+                    if (q3_50) {
                         var result = 'VU A1';
                     }
-                    for (i=0;i<Ext.getCmp("popupgroup").getValue().length;i++){
-                        result = result + (Ext.getCmp("popupgroup").getValue()[i].name);
+                    for (i=0;i<popupgroup.length;i++){
+                        result = result + popupgroup[i].name;
                     }
-                } else if ((Ext.getCmp('q4_yes').getValue()) || (Ext.getCmp('q5_yes').getValue()) || (Ext.getCmp('q6_yes').getValue())) {
-                    if ((Ext.getCmp('q3_80').getValue()) || (Ext.getCmp('q3_90').getValue())) {
+                } else if (q4_yes || q5_yes || q6_yes) {
+                    if (q3_80 || q3_90) {
                         var result = 'CR A2';
                     }
-                    if ((Ext.getCmp('q3_50').getValue()) || (Ext.getCmp('q3_70').getValue())) {
+                    if (q3_50 || q3_70) {
                         var result = 'EN A2';
                     }
-                    if (Ext.getCmp('q3_30').getValue()) {
+                    if (q3_30) {
                         var result = 'VU A2';
                     }
-                    for (i=0;i<Ext.getCmp("popupgroup").getValue().length;i++){
-                        result = result + (Ext.getCmp("popupgroup").getValue()[i].name);
+                    for (i=0;i<popupgroup.length;i++){
+                        result = result + popupgroup[i].name;
                     }
                 }
-                results.push(result)
+                results.push(result);
             }
             
             //A3
             result = ''
-            if ((Ext.getCmp('q1_nofut').getValue())) {
-                if ((Ext.getCmp('q3_80').getValue()) || (Ext.getCmp('q3_90').getValue())) {
+            if (q1_nofut) {
+                if (q3_80 || q3_90) {
                     var result = 'CR A3';
                 }
-                if ((Ext.getCmp('q3_50').getValue()) || (Ext.getCmp('q3_70').getValue())) {
+                if (q3_50 || q3_70) {
                     var result = 'EN A3';
                 }
-                if (Ext.getCmp('q3_30').getValue()) {
+                if (q3_30) {
                     var result = 'VU A3';
                 }
-                for (i=0;i<Ext.getCmp("popupgroup").getValue().length;i++){
-                    result = result + (Ext.getCmp("popupgroup").getValue()[i].name);
+                for (i=0;i<popupgroup.length;i++){
+                    result = result + popupgroup[i].name;
                 }
-                results.push(result)
+                results.push(result);
             }
             
             //A4
             result = ''
-            if ((Ext.getCmp('q1_yesfut').getValue())) {
-                if ((Ext.getCmp('q3_80').getValue()) || (Ext.getCmp('q3_90').getValue())) {
+            if (q1_yesfut) {
+                if (q3_80 || q3_90) {
                     var result = 'CR A4';
                 }
-                if ((Ext.getCmp('q3_50').getValue()) || (Ext.getCmp('q3_70').getValue())) {
+                if (q3_50 || q3_70) {
                     var result = 'EN A4';
                 }
-                if (Ext.getCmp('q3_30').getValue()) {
+                if (q3_30) {
                     var result = 'VU A4';
                 }
-                for (i=0;i<Ext.getCmp("popupgroup").getValue().length;i++){
-                    result = result + (Ext.getCmp("popupgroup").getValue()[i].name);
+                for (i=0;i<popupgroup.length;i++){
+                    result = result + popupgroup[i].name;
                 }
-                results.push(result)
+                results.push(result);
             }
             
             //B1
@@ -1921,21 +1998,21 @@ items: [
             catnum1 = ''
             catnum2a = false
             catnum2b = false
-            if (!(Ext.getCmp('q13_nd').getValue()) && !(Ext.getCmp('q13_10000p').getValue())) {
-                if (Ext.getCmp('q13_250').getValue() || Ext.getCmp('q13_50').getValue()) {
+            if (!q13_nd && !q13_10000p) {
+                if (q13_250 || q13_50) {
                     cat = "CR"
-                    if (Ext.getCmp('q14_25').getValue()) {
+                    if (q14_25) {
                         catnum1 = "1"
                     }
-                    if (Ext.getCmp('q16_50').getValue()) {
+                    if (q16_50) {
                         catnum1 = "2a"
                         catnum2a = true
                     }
-                    if (Ext.getCmp('q17_90').getValue() || Ext.getCmp('q17_95').getValue() || Ext.getCmp('q17_100').getValue()) {
+                    if (q17_90 || q17_95 || q17_100) {
                         catnum1 = "2a"
                         catnum2b = true
                     }
-                    if (Ext.getCmp('q18_yes').getValue()) {
+                    if (q18_yes) {
                         catnum1 = "2b"
                     }
                 }
@@ -2024,6 +2101,33 @@ items: [
             };
             maxcat = cats[Array.max(catsarr)]
             
+			//Calculate regional correction
+			if (q24_yes) {
+				if (q25_yes || q25_nd) {iucn_cat_reg = maxcat;} 
+				else {
+					if (q28_yes || q25_nd) {iucn_cat_reg = maxcat;} 
+					else {
+						if (q30_no || q30_nd) {iucn_cat_reg = maxcat;} 
+						else {
+                            iucn_cat_reg_ind = cats.indexOf(maxcat.substring(0,2))-1;
+							iucn_cat_reg = cats[iucn_cat_reg_ind];
+						}
+					}
+				}
+			} else {
+				if (q26_yes) {
+					if (q27_yes || q27_nd) {
+						if (q29_yes) {
+							iucn_cat_reg_ind = cats.indexOf(maxcat.substring(0,2))+1;
+							iucn_cat_reg = cats[iucn_cat_reg_ind];
+						} else {iucn_cat_reg = maxcat;}
+					} else {
+                        iucn_cat_reg_ind = cats.indexOf(maxcat.substring(0,2))-1;
+						iucn_cat_reg = cats[iucn_cat_reg_ind];
+					}
+				} else {iucn_cat_reg = maxcat;}
+			}
+			
             //Output results
             resstr = ''
             for (i=0;i<results.length;i++){
@@ -2039,8 +2143,11 @@ items: [
 			if (window.iucn_name == "") {window.iucn_name = "Вид не выбран в строке поиска или не найден в базе МСОП"}
             iucn_text = '<br/>Название вида:<br/>'+window.iucn_name+'<br/>'+'<br/>Официальная категория:<br/>'+window.iucn_cat+'<br/>';
             
-            Ext.Msg.alert('Результаты',iucn_text+'<br/>Расчетные категории:<br/>'+resstr)
-            //Ext.Msg.alert('Результат <br/>',str + result);
+			//Ouput regional correction
+			
+			
+			//Final message
+			Ext.Msg.alert('Результаты',iucn_text+'<br/>Расчетные категории:<br/>'+resstr+'<br/>Региональный статус:<br/>'+iucn_cat_reg);
         }}]
 });
 popupform = new Ext.FormPanel({
@@ -2092,9 +2199,9 @@ form.render(document.body);
 <b>IUCN Criteria: <a href="http://www.iucnredlist.org/documents/2001RedListCats_Crit_Russian.pdf" target="blank">Russian</a>, <a href="http://intranet.iucn.org/webfiles/doc/SSC/RedList/redlistcatsenglish.pdf" target="blank">English</a></b><br>
 <b>Guidelines for Application of IUCN Red List Criteria at Regional Levels Version 3.0: <a href="http://intranet.iucn.org/webfiles/doc/SSC/SSCwebsite/Red_List/regionalguidelinesEn.pdf" target="blank">English</a></b><br><br>
 
-<p>Ответьте на максимальное возможное количество вопросов и нажмите на кнопку "Анализ", которая находится в конце формы. Если вы не ответили на достаточное количество вопросов для определения категории ее расчет может быть невозможен. 
+<p>Ответьте на максимально возможное количество вопросов и нажмите на кнопку "Анализ", которая находится в конце формы. Если вы не ответили на достаточное количество вопросов для определения категории ее расчет может быть невозможен. 
 <p>Разработка: Максим Дубинин (<a href="mailto:sim@gis-lab.info">sim@gis-lab.info)</a>. </p>
-<p>Версия: 1.7 (5 октября 2011)</p>
+<p>Версия: 1.8 (12 октября 2011)</p>
 <p><a href="https://github.com/simgislab/iucn">Исходный код (GPL)</a></p>
 <br><br>
 <div style="width:600px;">
