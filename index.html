@@ -9,17 +9,15 @@
 <script type="text/javascript" src="../rostov/libs/ext-3.3.1/ext-all.js"></script>
 <script type="text/javascript" src="indexof.js"></script>
 <script type="text/javascript" src="help.js"></script>
+<script type="text/javascript" src="form_str_ru.js"></script>
 <script type="text/javascript">
-var iucn_name;
-window.iucn_name = "";
-var iucn_cat;
-window.iucn_cat = "";
-var iucn_cat_reg;
-window.iucn_cat_reg = "";
+var iucn_name = "",
+    iucn_cat = "",
+    iucn_cat_reg = "";
 
 Ext.onReady(function() {
-Ext.QuickTips.init();
-var ds = new Ext.data.Store({
+	Ext.QuickTips.init();
+	var ds = new Ext.data.Store({
         proxy: new Ext.data.ScriptTagProxy({
             url: 'db-read.php'
         }),
@@ -67,7 +65,7 @@ items: [
         {
             xtype: 'fieldset',
             id: 'q0',
-            title:"По каким параметрам нужно провести оценку? (q0) <a href='javascript:alert(q0_help);'><img src=\"q.png\"></a>",
+            title: q0_title + " (q0) <a href='javascript:alert(q0_help);'><img src=\"q.png\"></a>",
             disabled: false,
             items: [{
                 xtype: 'checkboxgroup',
@@ -203,7 +201,7 @@ items: [
         {
             xtype:"fieldset",
             id: "q22",
-            title:"Исчез ли вид окончательно? (q22) <a href='javascript:alert(q22_help);'><img src=\"q.png\"></a>",
+            title: q22_title + " (q22) <a href='javascript:alert(q22_help);'><img src=\"q.png\"></a>",
             autoHeight:true,
             hidden:true,
             items: [
@@ -254,7 +252,7 @@ items: [
         {
             xtype:"fieldset",
             id: "q23",
-            title:"Исчез ли вид только дикой природе? (q23) <a href='javascript:alert(q23_help);'><img src=\"q.png\"></a>",
+            title: q23_title + " (q23) <a href='javascript:alert(q23_help);'><img src=\"q.png\"></a>",
             autoHeight:true,
             hidden:true,
             items: [
@@ -305,7 +303,7 @@ items: [
         {
         xtype:"fieldset",
         id: "q1",
-        title:"Сокращается ли численность вида в последние 10 лет или 3 поколения? (q1) <a href='javascript:alert(qalert(123)' target='_blank'><img src=\"q.png\"></a>",
+        title: q1_title + "(q1) <a href='javascript:alert(qalert(123)' target='_blank'><img src=\"q.png\"></a>",
         //autoHeight:true,
         hidden:true,
         items: [
@@ -402,7 +400,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q3",
-        title:"На сколько сократилась численность (или сократится в будущем)? (q3) <a href='javascript:alert(q3_help);'><img src=\"q.png\"></a>",
+        title: q3_title + " (q3) <a href='javascript:alert(q3_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -529,7 +527,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q4",
-        title:"Устранены ли причины сокращения численности? (q4) <a href='javascript:alert(q4_help);'><img src=\"q.png\"></a>",
+        title: q4_title + " (q4) <a href='javascript:alert(q4_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -560,7 +558,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q5",
-        title:"Обратимы ли причины сокращения численности? (q5) <a href='javascript:alert(q5_help);'><img src=\"q.png\"></a>",
+        title: q5_title + " (q5) <a href='javascript:alert(q5_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -590,7 +588,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q6",
-        title:"Объяснимы ли причины сокращения численности? (q6) <a href='javascript:alert(q6_help);'><img src=\"q.png\"></a>",
+        title: q6_title + " (q6) <a href='javascript:alert(q6_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -620,7 +618,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q7",
-        title:"Каковы размеры области распространения? (q7) <a href='javascript:alert(q7_help);'><img src=\"q.png\"></a>",
+        title: q7_title + " (q7) <a href='javascript:alert(q7_help);'><img src=\"q.png\"></a>",
         autoHeight:true,
         hidden:true,
         items: [
@@ -713,7 +711,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q8",
-        title:"Каковы размеры области обитания? (q8) <a href='javascript:alert(q8_help);'><img src=\"q.png\"></a>",
+        title: q8_title + " (q8) <a href='javascript:alert(q8_help);'><img src=\"q.png\"></a>",
         autoHeight:true,
         hidden:true,
         items: [
@@ -823,7 +821,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q9",
-        title:"Сильно ли фрагментирована область распространения? (q9) <a href='javascript:alert(q9_help);'><img src=\"q.png\"></a>",
+        title: q9_title + " (q9) <a href='javascript:alert(q9_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -874,7 +872,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q10",
-        title:"Сколько локалитетов у области распространения? (q10) <a href='javascript:alert(q10_help);'><img src=\"q.png\"></a>",
+        title: q10_title + " (q10) <a href='javascript:alert(q10_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -939,7 +937,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q20",
-        title:"Сильно ли фрагментирована область обитания? (q20) <a href='javascript:alert(q20_help);'><img src=\"q.png\"></a>",
+        title: q20_title + " (q20) <a href='javascript:alert(q20_help);'><img src=\"q.png\"></a>",
         disabled:true,
         autoHeight:true,
         hidden:true,
@@ -973,7 +971,7 @@ items: [
                 }
             },
             {
-                xtype: 'radio',
+               xtype: 'radio',
                 hideLabel : true,
                 boxLabel: 'Нет данных',
                 name: 'q20a',
@@ -990,7 +988,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q21",
-        title:"Сколько локалитетов у области обитания? (q21) <a href='javascript:alert(q21_help);'><img src=\"q.png\"></a>",
+        title: q21_title + " (q21) <a href='javascript:alert(q21_help);'><img src=\"q.png\"></a>",
         disabled:true,
         autoHeight:true,
         hidden:true,
@@ -1055,7 +1053,7 @@ items: [
     {
         xtype: 'fieldset',
         id: 'q11',
-        title:"Снижение каких показателей продолжается? (q11) <a href='javascript:alert(q11_help);'><img src=\"q.png\"></a>",
+        title: q11_title + " (q11) <a href='javascript:alert(q11_help);'><img src=\"q.png\"></a>",
         disabled: true,
         hidden:true,
         items: [{
@@ -1074,7 +1072,7 @@ items: [
     {
         xtype: 'fieldset',
         id: 'q12',
-        title:"Есть ли экстремальные колебания следующих показателей? (q12) <a href='javascript:alert(q12_help);'><img src=\"q.png\"></a>",
+        title: q12_title + " (q12) <a href='javascript:alert(q12_help);'><img src=\"q.png\"></a>",
         disabled: true,
         hidden:true,
         items: [{
@@ -1092,7 +1090,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q13",
-        title:"Сколько половозрелых особей у вида? (q13) <a href='javascript:alert(q13_help);'><img src=\"q.png\"></a>",
+        title: q13_title + " (q13) <a href='javascript:alert(q13_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1241,7 +1239,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q14",
-        title:"На сколько снижается численность? (q14) <a href='javascript:alert(q14_help);'><img src=\"q.png\"></a>",
+        title: q14_title + " (q14) <a href='javascript:alert(q14_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -1309,7 +1307,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q16",
-        title:"Каков максимальный размер популяции? (q16) <a href='javascript:alert(q16_help);'><img src=\"q.png\"></a>",
+        title: q16_title + " (q16) <a href='javascript:alert(q16_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -1361,7 +1359,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q17",
-        title:"Сколько половозрелых особей находится в одной популяции? (q17) <a href='javascript:alert(q17_help);'><img src=\"q.png\"></a>",
+        title: q17_title + " (q17) <a href='javascript:alert(q17_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -1406,7 +1404,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q18",
-        title:"Сильно ли колеблется количество половозрелых особей? (q18) <a href='javascript:alert(q18_help);'><img src=\"q.png\"></a>",
+        title: q18_title + " (q18) <a href='javascript:alert(q18_help);'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -1436,7 +1434,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q19",
-        title:"Какова вероятность исчезновения таксона в дикой природе? (q19) <a href='javascript:alert(q19_help);'><img src=\"q.png\"></a>",
+        title: q19_title + " (q19) <a href='javascript:alert(q19_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1480,7 +1478,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q24",
-        title:"Является ли таксон заносным и неразмножающимся в регионе? (q24) <a href='javascript:alert(q24_help);'><img src=\"q.png\"></a>",
+        title: q24_title + " (q24) <a href='javascript:alert(q24_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1509,8 +1507,57 @@ items: [
     },
     {
         xtype:"fieldset",
+        id: "q31",
+        title: q31_title + " (q31) <a href='javascript:alert(q31_help);'><img src=\"q.png\"></a>",
+        disabled: false,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Да',
+                name: 'q31a',
+                id: 'q31_yes',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q24').disable();
+                            Ext.getCmp('q25').disable();
+							Ext.getCmp('q26').disable();
+                            Ext.getCmp('q27').disable();
+							Ext.getCmp('q28').disable();
+							Ext.getCmp('q29').disable();
+                            Ext.getCmp('q30').disable();
+                        }
+                    }
+                }
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет',
+                name: 'q31a',
+                id: 'q31_no',
+                listeners: {
+                    "check" : function(chckbx,state){
+                        if (state) {
+                            Ext.getCmp('q24').enable();
+                            Ext.getCmp('q25').enable();
+							Ext.getCmp('q26').enable();
+                            Ext.getCmp('q27').enable();
+							Ext.getCmp('q28').enable();
+							Ext.getCmp('q29').enable();
+                            Ext.getCmp('q30').enable();
+                        }
+                    }
+                }
+            }]
+    },
+	{
+        xtype:"fieldset",
         id: "q25",
-        title:"Ухудшаются ли условия вне региона? (q25) <a href='javascript:alert(q25_help);'><img src=\"q.png\"></a>",
+        title: q25_title + " (q25) <a href='javascript:alert(q25_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1540,7 +1587,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q26",
-        title:"Является иммиграция особей извне способных размножаться важным фактором для региональной популяции? (q26) <a href='javascript:alert(q26_help);'><img src=\"q.png\"></a>",
+        title: q26_title + " (q26) <a href='javascript:alert(q26_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1570,7 +1617,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q27",
-        title:"Ожидается ли снижение иммиграции? (q27) <a href='javascript:alert(q27_help);'><img src=\"q.png\"></a>",
+        title: q27_title + " (q27) <a href='javascript:alert(q27_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1600,7 +1647,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q28",
-        title:"Ухудшаются ли условия в регионе? (q28) <a href='javascript:alert(q28_help);'><img src=\"q.png\"></a>",
+        title: q28_title + " (q28) <a href='javascript:alert(q28_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1630,7 +1677,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q29",
-        title:"Является ли региональная популяция приемником? (q29) <a href='javascript:alert(q29_help);'><img src=\"q.png\"></a>",
+        title: q29_title + " (q29) <a href='javascript:alert(q29_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1660,7 +1707,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q30",
-        title:"Может ли размножающаяся популяция покинуть региональную популяцию в случае уменьшения последней? (q30) <a href='javascript:alert(q30_help);'><img src=\"q.png\"></a>",
+        title: q30_title + " (q30) <a href='javascript:alert(q30_help);'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1694,23 +1741,23 @@ items: [
             var str = 'Категория МСОП: ';
             var results = [];
             var catsarr = [];
-            var cats = ['VU','EN','CR','EW','EX'];
+            var cats = ['LC','NT','VU','EN','CR','EW','EX'];
             
             //vars
             var q1_nofut = Ext.getCmp('q1_nofut').getValue();
-			var q1_yesfut = Ext.getCmp('q1_yesfut').getValue();
+            var q1_yesfut = Ext.getCmp('q1_yesfut').getValue();
             var q1_yes = Ext.getCmp('q1_yes').getValue();
-			var q3_nd = Ext.getCmp('q3_nd').getValue();
-			var q3_30 = Ext.getCmp('q3_30').getValue();
-			var q3_50 = Ext.getCmp('q3_50').getValue();
-			var q3_70 = Ext.getCmp('q3_70').getValue();
-			var q3_80 = Ext.getCmp('q3_80').getValue();
-			var q3_90 = Ext.getCmp('q3_90').getValue();
-			var q3_30l = Ext.getCmp('q3_30l').getValue();
-			var q4_yes = Ext.getCmp('q4_yes').getValue();
-			var q5_yes = Ext.getCmp('q5_yes').getValue();
-			var q6_yes = Ext.getCmp('q6_yes').getValue();
-			var q7_nd = Ext.getCmp('q7_nd').getValue();
+            var q3_nd = Ext.getCmp('q3_nd').getValue();
+            var q3_30 = Ext.getCmp('q3_30').getValue();
+            var q3_50 = Ext.getCmp('q3_50').getValue();
+            var q3_70 = Ext.getCmp('q3_70').getValue();
+            var q3_80 = Ext.getCmp('q3_80').getValue();
+            var q3_90 = Ext.getCmp('q3_90').getValue();
+            var q3_30l = Ext.getCmp('q3_30l').getValue();
+            var q4_yes = Ext.getCmp('q4_yes').getValue();
+            var q5_yes = Ext.getCmp('q5_yes').getValue();
+            var q6_yes = Ext.getCmp('q6_yes').getValue();
+            var q7_nd = Ext.getCmp('q7_nd').getValue();
             var q7_no = Ext.getCmp('q7_no').getValue();
             var q7_100 = Ext.getCmp('q7_100').getValue();
             var q7_5000 = Ext.getCmp('q7_5000').getValue();
@@ -1728,47 +1775,49 @@ items: [
             var q11g = Ext.getCmp("q11g").getValue();
             var q12g = Ext.getCmp("q12g").getValue();
             var q13_nd = Ext.getCmp('q13_nd').getValue();
-			var q13_50 = Ext.getCmp('q13_50').getValue();
+            var q13_50 = Ext.getCmp('q13_50').getValue();
             var q13_250 = Ext.getCmp('q13_250').getValue();
             var q13_1000 = Ext.getCmp('q13_1000').getValue();
-			var q13_2500 = Ext.getCmp('q13_2500').getValue();
-			var q13_10000p = Ext.getCmp('q13_10000p').getValue();
+            var q13_2500 = Ext.getCmp('q13_2500').getValue();
+            var q13_10000p = Ext.getCmp('q13_10000p').getValue();
             var q14_25 = Ext.getCmp('q14_25').getValue();
-			var q16_50 = Ext.getCmp('q16_50').getValue();
-			var q17_90 = Ext.getCmp('q17_90').getValue();
-			var q17_95 = Ext.getCmp('q17_95').getValue();
-			var q17_100 = Ext.getCmp('q17_100').getValue();
-			var q18_yes = Ext.getCmp('q18_yes').getValue();
-			var q20_yes = Ext.getCmp('q20_yes').getValue();
+            var q16_50 = Ext.getCmp('q16_50').getValue();
+            var q17_90 = Ext.getCmp('q17_90').getValue();
+            var q17_95 = Ext.getCmp('q17_95').getValue();
+            var q17_100 = Ext.getCmp('q17_100').getValue();
+            var q18_yes = Ext.getCmp('q18_yes').getValue();
+            var q20_yes = Ext.getCmp('q20_yes').getValue();
             var q21_1 = Ext.getCmp('q21_1').getValue();
             var q21_5 = Ext.getCmp('q21_5').getValue();
             var q21_10 = Ext.getCmp('q21_10').getValue();
             var q22_yes = Ext.getCmp('q22_yes').getValue();
             var q23_yes = Ext.getCmp('q23_yes').getValue();
-			var q24_yes = Ext.getCmp('q24_yes').getValue();
-			var q24_no = Ext.getCmp('q24_no').getValue();
-			var q24_nd = Ext.getCmp('q24_nd').getValue();
-			var q25_yes = Ext.getCmp('q25_yes').getValue();
-			var q25_no = Ext.getCmp('q25_no').getValue();
-			var q25_nd = Ext.getCmp('q25_nd').getValue();
+            var q24_yes = Ext.getCmp('q24_yes').getValue();
+            var q24_no = Ext.getCmp('q24_no').getValue();
+            var q24_nd = Ext.getCmp('q24_nd').getValue();
+            var q25_yes = Ext.getCmp('q25_yes').getValue();
+            var q25_no = Ext.getCmp('q25_no').getValue();
+            var q25_nd = Ext.getCmp('q25_nd').getValue();
             var q26_yes = Ext.getCmp('q26_yes').getValue();
-			var q26_no = Ext.getCmp('q26_no').getValue();
-			var q26_nd = Ext.getCmp('q26_nd').getValue();
+            var q26_no = Ext.getCmp('q26_no').getValue();
+            var q26_nd = Ext.getCmp('q26_nd').getValue();
             var q27_yes = Ext.getCmp('q27_yes').getValue();
-			var q27_no = Ext.getCmp('q27_no').getValue();
-			var q27_nd = Ext.getCmp('q27_nd').getValue();
-			var q28_yes = Ext.getCmp('q28_yes').getValue();
-			var q28_no = Ext.getCmp('q28_no').getValue();
-			var q28_nd = Ext.getCmp('q28_nd').getValue();
-			var q29_yes = Ext.getCmp('q29_yes').getValue();
-			var q29_no = Ext.getCmp('q29_no').getValue();
-			var q29_nd = Ext.getCmp('q29_nd').getValue();
-			var q30_yes = Ext.getCmp('q30_yes').getValue();
-			var q30_no = Ext.getCmp('q30_no').getValue();
-			var q30_nd = Ext.getCmp('q30_nd').getValue();
+            var q27_no = Ext.getCmp('q27_no').getValue();
+            var q27_nd = Ext.getCmp('q27_nd').getValue();
+            var q28_yes = Ext.getCmp('q28_yes').getValue();
+            var q28_no = Ext.getCmp('q28_no').getValue();
+            var q28_nd = Ext.getCmp('q28_nd').getValue();
+            var q29_yes = Ext.getCmp('q29_yes').getValue();
+            var q29_no = Ext.getCmp('q29_no').getValue();
+            var q29_nd = Ext.getCmp('q29_nd').getValue();
+            var q30_yes = Ext.getCmp('q30_yes').getValue();
+            var q30_no = Ext.getCmp('q30_no').getValue();
+            var q30_nd = Ext.getCmp('q30_nd').getValue();
+            var q31_yes = Ext.getCmp('q31_yes').getValue();
+            var q31_no = Ext.getCmp('q31_no').getValue();
 			var popupgroup = Ext.getCmp("popupgroup").getValue();
-			
-            //ex,ew
+
+            //EX,EW
             result = ''
             if (q22_yes) {
                 var result = 'EX';
@@ -2058,44 +2107,48 @@ items: [
             //Determine maximum category
             for (i=0;i<results.length;i++){
                 curcat = results[i].substring(0,2)
-                if (curcat == 'VU') {catsarr.push(0)}
-                else if (curcat == 'EN') {catsarr.push(1)}
-                else if (curcat == 'CR') {catsarr.push(2)}
-                else if (curcat == 'EW') {catsarr.push(3)}
-                else if (curcat == 'EX') {catsarr.push(4)}
+                if (curcat == 'VU') {catsarr.push(2)}
+                else if (curcat == 'EN') {catsarr.push(3)}
+                else if (curcat == 'CR') {catsarr.push(4)}
+                else if (curcat == 'EW') {catsarr.push(5)}
+                else if (curcat == 'EX') {catsarr.push(6)}
             }
             Array.max = function( array ){
                 return Math.max.apply( Math, array );
             };
-            maxcat = cats[Array.max(catsarr)]
+            maxcat = cats[Array.max(catsarr)];
             
 			//Calculate regional correction
-			if (q24_yes) {
-				if (q25_yes || q25_nd) {iucn_cat_reg = maxcat;} 
-				else {
-					if (q28_yes || q25_nd) {iucn_cat_reg = maxcat;} 
+			if (q31_yes) {iucn_cat_reg = RE;}
+			if (maxcat != 'EX' || maxcat != 'EW') {
+				if (q24_yes) {
+					if (q25_yes || q25_nd) {iucn_cat_reg = maxcat;} 
 					else {
-						if (q30_no || q30_nd) {iucn_cat_reg = maxcat;} 
+						if (q28_yes || q25_nd) {iucn_cat_reg = maxcat;} 
 						else {
-                            iucn_cat_reg_ind = cats.indexOf(maxcat.substring(0,2))-1;
-							iucn_cat_reg = cats[iucn_cat_reg_ind];
+							if (q30_no || q30_nd) {iucn_cat_reg = maxcat;} 
+							else {
+								iucn_cat_reg_ind = cats.indexOf(maxcat.substring(0,2))-1;
+								iucn_cat_reg = cats[iucn_cat_reg_ind];
+							}
 						}
 					}
+				} else {
+					if (q26_yes) {
+						if (q27_yes || q27_nd) {
+							if (q29_yes) {
+								iucn_cat_reg_ind = cats.indexOf(maxcat.substring(0,2))+1;
+								iucn_cat_reg = cats[iucn_cat_reg_ind];
+							} else {iucn_cat_reg = maxcat;}
+						} else {
+							iucn_cat_reg_ind = cats.indexOf(maxcat.substring(0,2))-1;
+							iucn_cat_reg = cats[iucn_cat_reg_ind];
+						}
+					} else {iucn_cat_reg = maxcat;}
 				}
 			} else {
-				if (q26_yes) {
-					if (q27_yes || q27_nd) {
-						if (q29_yes) {
-							iucn_cat_reg_ind = cats.indexOf(maxcat.substring(0,2))+1;
-							iucn_cat_reg = cats[iucn_cat_reg_ind];
-						} else {iucn_cat_reg = maxcat;}
-					} else {
-                        iucn_cat_reg_ind = cats.indexOf(maxcat.substring(0,2))-1;
-						iucn_cat_reg = cats[iucn_cat_reg_ind];
-					}
-				} else {iucn_cat_reg = maxcat;}
+				iucn_cat_reg = maxcat +"; Для данных категорий расчет региональной поправки невозможен."
 			}
-			
             //Output results
             resstr = ''
             for (i=0;i<results.length;i++){
@@ -2170,7 +2223,7 @@ form.render(document.body);
 
 <p>Ответьте на максимально возможное количество вопросов и нажмите на кнопку "Анализ", которая находится в конце формы. Если вы не ответили на достаточное количество вопросов для определения категории ее расчет может быть невозможен. 
 <p>Разработка: Максим Дубинин (<a href="mailto:sim@gis-lab.info">sim@gis-lab.info)</a>. </p>
-<p>Версия: 1.8 (12 октября 2011)</p>
+<p>Версия: 1.6 (27 октября 2011)</p>
 <p><a href="https://github.com/simgislab/iucn">Исходный код (GPL)</a></p>
 <br><br>
 <div style="width:600px;">
