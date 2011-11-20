@@ -13,7 +13,8 @@
 <script type="text/javascript">
 var iucn_name = "",
     iucn_cat = "",
-    iucn_cat_reg = "";
+    iucn_cat_reg = "",
+    wikihelplink = "http://www.nextgis.ru/demo/iucn/docu/doku.php?id=";
 
 Ext.onReady(function() {
 	Ext.QuickTips.init();
@@ -65,7 +66,7 @@ items: [
         {
             xtype: 'fieldset',
             id: 'q0',
-            title: q0_title + " (q0) <a href='javascript:alert(q0_help);'><img src=\"q.png\"></a>",
+            title: q0_title + " (q0) <a href='"+wikihelplink+"q0' target='_blank'><img src=\"q.png\"></a>",
             disabled: false,
             items: [{
                 xtype: 'checkboxgroup',
@@ -184,6 +185,7 @@ items: [
                                     Ext.getCmp('q28').show();
                                     Ext.getCmp('q29').show();
                                     Ext.getCmp('q30').show();
+                                    Ext.getCmp('q31').show();
                                 } else {
                                     Ext.getCmp('q24').hide();
                                     Ext.getCmp('q25').hide();
@@ -192,6 +194,7 @@ items: [
                                     Ext.getCmp('q28').hide();
                                     Ext.getCmp('q29').hide();
                                     Ext.getCmp('q30').hide();
+                                    Ext.getCmp('q31').hide();
                                 }
                             }
                         }
@@ -201,7 +204,7 @@ items: [
         {
             xtype:"fieldset",
             id: "q22",
-            title: q22_title + " (q22) <a href='javascript:alert(q22_help);'><img src=\"q.png\"></a>",
+            title: q22_title + " (q22) <a href='"+wikihelplink+"q22' target='_blank'><img src=\"q.png\"></a>",
             autoHeight:true,
             hidden:true,
             items: [
@@ -252,7 +255,7 @@ items: [
         {
             xtype:"fieldset",
             id: "q23",
-            title: q23_title + " (q23) <a href='javascript:alert(q23_help);'><img src=\"q.png\"></a>",
+            title: q23_title + " (q23) <a href='"+wikihelplink+"q23' target='_blank'><img src=\"q.png\"></a>",
             autoHeight:true,
             hidden:true,
             items: [
@@ -303,7 +306,7 @@ items: [
         {
         xtype:"fieldset",
         id: "q1",
-        title: q1_title + "(q1) <a href='javascript:alert(qalert(123)' target='_blank'><img src=\"q.png\"></a>",
+        title: q1_title + " (q1) <a href='"+wikihelplink+"q1' target='_blank'><img src=\"q.png\"></a>",
         //autoHeight:true,
         hidden:true,
         items: [
@@ -366,7 +369,7 @@ items: [
                 hideLabel : true,
                 name: 'q1a',
                 id: 'q1_no',
-                boxLabel: 'Нет',
+                boxLabel: 'Нет и будущее неизвестно',
                 listeners: {
                     "check": function(chckbx,state){
                         if (state) {
@@ -400,7 +403,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q3",
-        title: q3_title + " (q3) <a href='javascript:alert(q3_help);'><img src=\"q.png\"></a>",
+        title: q3_title + " (q3) <a href='"+wikihelplink+"q3' target='_blank'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -527,7 +530,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q4",
-        title: q4_title + " (q4) <a href='javascript:alert(q4_help);'><img src=\"q.png\"></a>",
+        title: q4_title + " (q4) <a href='"+wikihelplink+"q4' target='_blank'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -558,7 +561,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q5",
-        title: q5_title + " (q5) <a href='javascript:alert(q5_help);'><img src=\"q.png\"></a>",
+        title: q5_title + " (q5) <a href='"+wikihelplink+"q5' target='_blank'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -588,7 +591,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q6",
-        title: q6_title + " (q6) <a href='javascript:alert(q6_help);'><img src=\"q.png\"></a>",
+        title: q6_title + " (q6) <a href='"+wikihelplink+"q6' target='_blank'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -618,7 +621,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q7",
-        title: q7_title + " (q7) <a href='javascript:alert(q7_help);'><img src=\"q.png\"></a>",
+        title: q7_title + " (q7) <a href='"+wikihelplink+"q7' target='_blank'><img src=\"q.png\"></a>",
         autoHeight:true,
         hidden:true,
         items: [
@@ -711,7 +714,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q8",
-        title: q8_title + " (q8) <a href='javascript:alert(q8_help);'><img src=\"q.png\"></a>",
+        title: q8_title + " (q8) <a href='"+wikihelplink+"q8' target='_blank'><img src=\"q.png\"></a>",
         autoHeight:true,
         hidden:true,
         items: [
@@ -821,7 +824,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q9",
-        title: q9_title + " (q9) <a href='javascript:alert(q9_help);'><img src=\"q.png\"></a>",
+        title: q9_title + " (q9) <a href='"+wikihelplink+"q9' target='_blank'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -872,7 +875,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q10",
-        title: q10_title + " (q10) <a href='javascript:alert(q10_help);'><img src=\"q.png\"></a>",
+        title: q10_title + " (q10) <a href='"+wikihelplink+"q10' target='_blank'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -937,7 +940,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q20",
-        title: q20_title + " (q20) <a href='javascript:alert(q20_help);'><img src=\"q.png\"></a>",
+        title: q20_title + " (q20) <a href='"+wikihelplink+"q20' target='_blank'><img src=\"q.png\"></a>",
         disabled:true,
         autoHeight:true,
         hidden:true,
@@ -988,7 +991,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q21",
-        title: q21_title + " (q21) <a href='javascript:alert(q21_help);'><img src=\"q.png\"></a>",
+        title: q21_title + " (q21) <a href='"+wikihelplink+"q21' target='_blank'><img src=\"q.png\"></a>",
         disabled:true,
         autoHeight:true,
         hidden:true,
@@ -1053,7 +1056,7 @@ items: [
     {
         xtype: 'fieldset',
         id: 'q11',
-        title: q11_title + " (q11) <a href='javascript:alert(q11_help);'><img src=\"q.png\"></a>",
+        title: q11_title + " (q11) <a href='"+wikihelplink+"q11' target='_blank'><img src=\"q.png\"></a>",
         disabled: true,
         hidden:true,
         items: [{
@@ -1072,7 +1075,7 @@ items: [
     {
         xtype: 'fieldset',
         id: 'q12',
-        title: q12_title + " (q12) <a href='javascript:alert(q12_help);'><img src=\"q.png\"></a>",
+        title: q12_title + " (q12) <a href='"+wikihelplink+"q12' target='_blank'><img src=\"q.png\"></a>",
         disabled: true,
         hidden:true,
         items: [{
@@ -1090,7 +1093,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q13",
-        title: q13_title + " (q13) <a href='javascript:alert(q13_help);'><img src=\"q.png\"></a>",
+        title: q13_title + " (q13) <a href='"+wikihelplink+"q13' target='_blank'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1239,7 +1242,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q14",
-        title: q14_title + " (q14) <a href='javascript:alert(q14_help);'><img src=\"q.png\"></a>",
+        title: q14_title + " (q14) <a href='"+wikihelplink+"q14' target='_blank'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -1307,7 +1310,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q16",
-        title: q16_title + " (q16) <a href='javascript:alert(q16_help);'><img src=\"q.png\"></a>",
+        title: q16_title + " (q16) <a href='"+wikihelplink+"q16' target='_blank'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -1359,7 +1362,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q17",
-        title: q17_title + " (q17) <a href='javascript:alert(q17_help);'><img src=\"q.png\"></a>",
+        title: q17_title + " (q17) <a href='"+wikihelplink+"q17' target='_blank'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -1404,7 +1407,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q18",
-        title: q18_title + " (q18) <a href='javascript:alert(q18_help);'><img src=\"q.png\"></a>",
+        title: q18_title + " (q18) <a href='"+wikihelplink+"q18' target='_blank'><img src=\"q.png\"></a>",
         disabled: true,
         autoHeight:true,
         hidden:true,
@@ -1434,7 +1437,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q19",
-        title: q19_title + " (q19) <a href='javascript:alert(q19_help);'><img src=\"q.png\"></a>",
+        title: q19_title + " (q19) <a href='"+wikihelplink+"q19' target='_blank'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1477,38 +1480,8 @@ items: [
     },
     {
         xtype:"fieldset",
-        id: "q24",
-        title: q24_title + " (q24) <a href='javascript:alert(q24_help);'><img src=\"q.png\"></a>",
-        disabled: false,
-        autoHeight:true,
-        hidden:true,
-        items: [
-            {
-                xtype: 'radio',
-                hideLabel : true,
-                boxLabel: 'Да',
-                name: 'q24a',
-                id: 'q24_yes'
-            },
-            {
-                xtype: 'radio',
-                hideLabel : true,
-                boxLabel: 'Нет',
-                name: 'q24a',
-                id: 'q24_no'
-            },
-            {
-                xtype: 'radio',
-                hideLabel : true,
-                boxLabel: 'Нет данных',
-                name: 'q24a',
-                id: 'q24_nd'
-            }]
-    },
-    {
-        xtype:"fieldset",
         id: "q31",
-        title: q31_title + " (q31) <a href='javascript:alert(q31_help);'><img src=\"q.png\"></a>",
+        title: q31_title + " (q31) <a href='"+wikihelplink+"q31' target='_blank'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1554,10 +1527,40 @@ items: [
                 }
             }]
     },
+    {
+        xtype:"fieldset",
+        id: "q24",
+        title: q24_title + " (q24) <a href='"+wikihelplink+"q24' target='_blank'><img src=\"q.png\"></a>",
+        disabled: false,
+        autoHeight:true,
+        hidden:true,
+        items: [
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Да',
+                name: 'q24a',
+                id: 'q24_yes'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет',
+                name: 'q24a',
+                id: 'q24_no'
+            },
+            {
+                xtype: 'radio',
+                hideLabel : true,
+                boxLabel: 'Нет данных',
+                name: 'q24a',
+                id: 'q24_nd'
+            }]
+    },
 	{
         xtype:"fieldset",
         id: "q25",
-        title: q25_title + " (q25) <a href='javascript:alert(q25_help);'><img src=\"q.png\"></a>",
+        title: q25_title + " (q25) <a href='"+wikihelplink+"q25' target='_blank'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1587,7 +1590,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q26",
-        title: q26_title + " (q26) <a href='javascript:alert(q26_help);'><img src=\"q.png\"></a>",
+        title: q26_title + " (q26) <a href='"+wikihelplink+"q26' target='_blank'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1617,7 +1620,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q27",
-        title: q27_title + " (q27) <a href='javascript:alert(q27_help);'><img src=\"q.png\"></a>",
+        title: q27_title + " (q27) <a href='"+wikihelplink+"q27' target='_blank'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1647,7 +1650,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q28",
-        title: q28_title + " (q28) <a href='javascript:alert(q28_help);'><img src=\"q.png\"></a>",
+        title: q28_title + " (q28) <a href='"+wikihelplink+"q28' target='_blank'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1677,7 +1680,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q29",
-        title: q29_title + " (q29) <a href='javascript:alert(q29_help);'><img src=\"q.png\"></a>",
+        title: q29_title + " (q29) <a href='"+wikihelplink+"q29' target='_blank'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -1707,7 +1710,7 @@ items: [
     {
         xtype:"fieldset",
         id: "q30",
-        title: q30_title + " (q30) <a href='javascript:alert(q30_help);'><img src=\"q.png\"></a>",
+        title: q30_title + " (q30) <a href='"+wikihelplink+"q30' target='_blank'><img src=\"q.png\"></a>",
         disabled: false,
         autoHeight:true,
         hidden:true,
@@ -2119,7 +2122,7 @@ items: [
             maxcat = cats[Array.max(catsarr)];
             
 			//Calculate regional correction
-			if (q31_yes) {iucn_cat_reg = RE;}
+			if (q31_yes) {iucn_cat_reg = 'RE';}
 			if (maxcat != 'EX' || maxcat != 'EW') {
 				if (q24_yes) {
 					if (q25_yes || q25_nd) {iucn_cat_reg = maxcat;} 
@@ -2147,7 +2150,7 @@ items: [
 					} else {iucn_cat_reg = maxcat;}
 				}
 			} else {
-				iucn_cat_reg = maxcat +"; Для данных категорий расчет региональной поправки невозможен."
+				iucn_cat_reg = "Для данных категорий расчет региональной поправки невозможен."
 			}
             //Output results
             resstr = ''
@@ -2165,8 +2168,12 @@ items: [
             if (window.iucn_cat == "") {window.iucn_cat = "Официальной категории нет, так не указан вид"}
             iucn_text = '<br/>Название вида:<br/>'+window.iucn_name+'<br/>'+'<br/>Официальная категория:<br/>'+window.iucn_cat+'<br/>';
             
-			//Ouput regional correction
-			
+			//Output regional correction
+			if (iucn_cat_reg == "") {
+                
+            } else {
+                
+            }
 			
 			//Final message
 			Ext.Msg.alert('Результаты',iucn_text+'<br/>Расчетные категории:<br/>'+resstr+'<br/>Региональный статус:<br/>'+iucn_cat_reg);
@@ -2218,13 +2225,11 @@ form.render(document.body);
 
 </head>
 <body>
-<b>IUCN Criteria: <a href="http://www.iucnredlist.org/documents/2001RedListCats_Crit_Russian.pdf" target="blank">Russian</a>, <a href="http://intranet.iucn.org/webfiles/doc/SSC/RedList/redlistcatsenglish.pdf" target="blank">English</a></b><br>
-<b>Guidelines for Application of IUCN Red List Criteria at Regional Levels Version 3.0: <a href="http://intranet.iucn.org/webfiles/doc/SSC/SSCwebsite/Red_List/regionalguidelinesEn.pdf" target="blank">English</a></b><br><br>
+<p>Подробная информация об этом инструменте доступна в <a href="http://www.nextgis.ru/demo/iucn/docu">справочной системе проекта</a></p>
 
 <p>Ответьте на максимально возможное количество вопросов и нажмите на кнопку "Анализ", которая находится в конце формы. Если вы не ответили на достаточное количество вопросов для определения категории ее расчет может быть невозможен. 
-<p>Разработка: Максим Дубинин (<a href="mailto:sim@gis-lab.info">sim@gis-lab.info)</a>. </p>
-<p>Версия: 1.6 (27 октября 2011)</p>
-<p><a href="https://github.com/simgislab/iucn">Исходный код (GPL)</a></p>
+<p>Вопросы: (<a href="mailto:sim@gis-lab.info">sim@gis-lab.info)</a>. </p>
+<p>Версия: 1.9 (20 ноября 2011)</p>
 <br><br>
 <div style="width:600px;">
     <div class="x-box-tl"><div class="x-box-tr"><div class="x-box-tc"></div></div></div>
