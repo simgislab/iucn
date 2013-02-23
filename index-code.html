@@ -62,6 +62,7 @@ Ext.onReady(function() {
     });
 
 form = new Ext.form.FormPanel({
+id:"form",
 labelWidth: 200,
 width: 700,
 items: [
@@ -1741,6 +1742,18 @@ items: [
     }],
 //ANALYSIS
     buttons:[{
+		text:'Код',
+        handler:function(){
+			var form = Ext.getCmp('form').getForm();
+			var serial = '',
+			values = form.getValues();
+
+			for(var value in values)
+				serial += '&' + value + '=' + values[value];
+			alert(serial.substr(1));
+		}
+	},
+	{
         text:'Анализ',
         handler:function(){
             var str = 'Категория МСОП: ';
