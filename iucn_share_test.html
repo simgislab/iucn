@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Пример восстановления значения</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" href="libs/ext-3.3.1/resources/css/ext-all.css" type="text/css">
+<script type="text/javascript" src="libs/ext-3.3.1/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="libs/ext-3.3.1/ext-all.js"></script>
+<script type="text/javascript">
+var wikihelplink = "docu/doku.php?id=";
+
+Ext.onReady(function() {
+    Ext.QuickTips.init();
+
+    q22_title = "Исчез ли вид окончательно?";
+
+    formPanel = new Ext.form.FormPanel({
+        labelWidth: 200,
+        width: 700,
+        items: [{
+            xtype:"fieldset",
+            id: "q22-fs",
+            title: 'title',
+            autoHeight:true,
+            hidden:false,
+	    defaults: {xtype: "radio", name: "q22", hideLabel: true},
+            items: [
+                    {
+                        boxLabel: 'Да',
+                        inputValue: 'yes',
+                    },
+                    {
+                        inputValue: 'no',
+                        boxLabel: 'Нет',
+                    },
+                    {
+                        boxLabel: 'Нет данных',
+                        inputValue: 'nd',
+                    }
+                ]
+            }
+        ]
+    });  
+
+    formPanel.render(document.body);
+
+    formPanel.getForm().setValues({q22: getParam('q22')});
+});
+
+
+function getParam (sname) {
+    var params = location.search.substr(location.search.indexOf("?")+1);
+    var sval = "";
+    params = params.split("&");
+    // split param and value into individual pieces
+    for (var i=0; i<params.length; i++) {
+         temp = params[i].split("=");
+         if ( [temp[0]] == sname ) { sval = temp[1]; }
+    }
+    return sval;
+};
+
+serialize_form_values = function()
+{
+    var form = formPanel.getForm();
+
+    var serial = '',
+        values = form.getValues();
+
+    for(var value in values)
+        serial += '&' + value + '=' + values[value];
+
+    alert("http://iucn.info/iucn_share_test.html?" + serial.substr(1));
+};
+</script>
+
+</head>
+<body>
+<p>Пример генерации строки параметров и восстановления из нее значений</p>
+<p>1. Измените один из параметров<br>
+2. Нажмите Генерировать<br>
+3. Скопируйте текст и вставьте в строку браузера - значения должны заполниться сами</p>
+<br><br>
+<button type="button" onclick='serialize_form_values()'>Генерировать</button>
+</body>
+</html></html>
