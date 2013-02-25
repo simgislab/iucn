@@ -1,5 +1,8 @@
+#!/usr/local/bin/python
 #-*- encoding: utf-8 -*-
-#Веб-версия
+
+import cgitb ; cgitb.enable()
+import cgi
 
 import re
 import sys
@@ -14,37 +17,37 @@ def usage():
 
 def descript(cat,crit1,crit2,crit3,crit4):
     
-    result = data[(cat,)] + "\n"
+    result = data[(cat,)] + "<br>"
     
     if crit1 != '':
-        result = result + "  " + data[(cat,crit1)] + "\n"
+        result = result + "&nbsp;&nbsp;" + data[(cat,crit1)] + "<br>"
         if crit2 != '':
-            result = result + "    " + data[(cat,crit1,crit2)] + "\n"
+            result = result + "&nbsp;&nbsp;&nbsp;&nbsp;" + data[(cat,crit1,crit2)] + "<br>"
             if crit4 == "":
                 for i in range(len(crit3)):
-                    result = result + "      " + data[(cat,crit1,crit2,crit3[i])] + "\n"
+                    result = result + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data[(cat,crit1,crit2,crit3[i])] + "<br>"
             else:
                 for crit3,crit4 in crit34:
-                    result = result + "      " + data[(cat,crit1,crit2,crit3)] + "\n"
+                    result = result + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data[(cat,crit1,crit2,crit3)] + "<br>"
                     if crit4 != '':
                         for j in crit4.split(","):
-                            result = result + "        " + data[(cat,crit1,crit2,crit3,j)] + "\n"
+                            result = result + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data[(cat,crit1,crit2,crit3,j)] + "<br>"
     
-    result = result + "*************************************************************\n"
+    result = result + "*************************************************************<br>"
     
-    fo.write(result)
+    print(result)
 
-if __name__ == '__main__':
-    args = sys.argv[ 1: ]
-    if args is None or len( args ) < 2:
-        usage()
+if __name__ == '__main__':  
+    form = cgi.FieldStorage()
+    
+    val = form.getvalue("iucncode") #args[ 0 ]
+    
+    print "Content-Type: text/html\n"
+    # note the extra blank line terminate the headers
+    print("Р”РµС€РёС„СЂРёСЂСѓРµРј: " + val + "<br><br>")
     
     data = iucn2text_data.iucndata()
     
-    val = args[ 0 ]
-    fon = args[ 1 ]
-    fo = open(fon,"w")
-    fo.write("Дешифрируем: " + val + "\n\n")
     result = ''
 
     #get category
@@ -88,5 +91,5 @@ if __name__ == '__main__':
     else:
         descript(cat,'','','','')
     
-    fo.close()
+    #fo.close()
 
