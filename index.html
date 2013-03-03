@@ -5,6 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <link rel="stylesheet" href="libs/ext-3.3.1/resources/css/ext-all.css" type="text/css">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
 <script type="text/javascript" src="libs/ext-3.3.1/adapter/ext/ext-base.js"></script>
 <script type="text/javascript" src="libs/ext-3.3.1/ext-all.js"></script>
 <script type="text/javascript" src="indexof.js"></script>
@@ -43,10 +45,11 @@ Ext.onReady(function() {
     
     var search = new Ext.form.ComboBox({
         store: ds,
+        style: "margin: 0px auto 0px auto;",
         displayField:'latin',
         typeAhead: false,
         loadingText: 'Подождите, идет поиск в базе...',
-        width: 570,
+        width: 680,
         pageSize:200,
         hideTrigger:true,
         tpl: resultTpl,
@@ -62,6 +65,7 @@ Ext.onReady(function() {
     });
 
 form = new Ext.form.FormPanel({
+style: "margin: 0px 45px 0px 50px;",
 labelWidth: 200,
 width: 700,
 items: [
@@ -2227,22 +2231,35 @@ form.render(document.body);
 
 </head>
 <body>
-<p>Подробная информация об этом инструменте доступна в <a href="docu">справочной системе проекта</a></p>
-
-<p>Ответьте на максимально возможное количество вопросов и нажмите на кнопку "Анализ", которая находится в конце формы. Если вы не ответили на достаточное количество вопросов для определения категории ее расчет может быть невозможен. </p>
-<p>Вопросы: (<a href="mailto:sim@gis-lab.info">sim@gis-lab.info)</a>. </p>
-<p>Версия: 1.9 (20 ноября 2011)</p>
-<br><br>
-<div style="width:600px;">
-    <div class="x-box-tl"><div class="x-box-tr"><div class="x-box-tc"></div></div></div>
-    <div class="x-box-ml"><div class="x-box-mr"><div class="x-box-mc">
-        <h3 style="margin-bottom:5px;">Найти вид в базе данных МСОП (необязательно)</h3>
-        <input type="text" size="40" name="search" id="search" />
-        <div style="padding-top:4px;">
-            Для поиска введите минимум 4 любых символа латинского наименования вида.
-        </div>
-    </div></div></div>
-    <div class="x-box-bl"><div class="x-box-br"><div class="x-box-bc"></div></div></div>
-</div>
+<div class="container">
+    <div class="masthead">
+        <h3 class="muted">Удобная работа с кодом IUCN</h3>
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="container">
+              <ul class="nav">
+                <li class="active"><a href="/">Определить код</a></li>
+                <li><a href="iucn2text.html">Код в текст</a></li>
+                <li><a href="species2text.html">Вид в текст</a></li>
+                <li><a href="docu">Справка</a></li>
+                <li><a href="mailto:sim@gis-lab.info">Контакты</a></li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- /.navbar -->
+    </div>
+    <p>Ответьте на максимально возможное количество вопросов и нажмите на кнопку "Анализ", которая находится в конце формы. Если вы не ответили на достаточное количество вопросов для определения категории ее расчет может быть невозможен. </p>
+    <div style="width:710px;">
+        <div class="x-box-tl"><div class="x-box-tr"><div class="x-box-tc"></div></div></div>
+        <div class="x-box-ml"><div class="x-box-mr"><div class="x-box-mc">
+            <h3 style="margin-bottom:5px;">Найти вид в базе данных МСОП (необязательно)</h3>
+            <input type="text" size="40" name="search" id="search" />
+            <div style="padding-top:4px;">
+                Для поиска введите минимум 4 любых символа латинского наименования вида.
+            </div>
+        </div></div></div>
+        <div class="x-box-bl"><div class="x-box-br"><div class="x-box-bc"></div></div></div>
+    </div>
+</div> <!-- /container -->
 </body>
-</html></html>
+</html>

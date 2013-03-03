@@ -44,7 +44,7 @@ function json_encode_cyr($str) {
 
 //echo json_encode_cyr($xmlobj);
 
-$sql = 'SELECT "latin" AS "latin",cat AS "crit",cat AS "crit" from iucnspecies WHERE latin ILIKE \'%' . pg_escape_string($query) . '%\' ORDER BY "latin" ASC LIMIT ' . $limit;
+$sql = 'SELECT "latin" AS "latin",crit AS "crit",cat AS "cat" from iucnspecies WHERE latin ILIKE \'%' . pg_escape_string($query) . '%\' ORDER BY "latin" ASC LIMIT ' . $limit;
 $result = pg_query($connection, $sql);
 $total = pg_num_rows($result);
 
