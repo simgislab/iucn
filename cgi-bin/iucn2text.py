@@ -51,7 +51,7 @@ if __name__ == '__main__':
     val = form.getvalue("iucncode") #args[ 0 ]
     
     print "Content-Type: text/html\n"
-    print("Дешифрируем: " + val + "<br><br>")
+    print("Статус IUCN: " + val + "<br><br>")
     
     data = iucn2text_data.iucndata()
     
