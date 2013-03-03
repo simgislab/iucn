@@ -7,6 +7,7 @@ import cgi
 import re
 import sys
 import iucn2text_data
+import datetime
 
 def usage():
   '''Show usage synopsis.
@@ -15,27 +16,41 @@ def usage():
   print 'Usage: iucn2text.py code_to_decode output_txt_file'
   sys.exit( 1 )
 
+def log(val,success):
+    now = datetime.datetime.now()
+    
+    flog = open("../iucn2text.log","a")
+    flog.write(now.strftime("%Y-%m-%d %H:%M:%S") + "," + val+","+str(success) + "\n")
+    flog.close()
+
 def descript(cat,crit1,crit2,crit3,crit4):
     
+    success = 0
     result = data[(cat,)] + "<br>"
     
-    if crit1 != '':
-        result = result + "&nbsp;&nbsp;" + data[(cat,crit1)] + "<br>"
-        if crit2 != '':
-            result = result + "&nbsp;&nbsp;&nbsp;&nbsp;" + data[(cat,crit1,crit2)] + "<br>"
-            if crit4 == "":
-                for i in range(len(crit3)):
-                    result = result + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data[(cat,crit1,crit2,crit3[i])] + "<br>"
-            else:
-                for crit3,crit4 in crit34:
-                    result = result + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data[(cat,crit1,crit2,crit3)] + "<br>"
-                    if crit4 != '':
-                        for j in crit4.split(","):
-                            result = result + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data[(cat,crit1,crit2,crit3,j)] + "<br>"
-    
-    result = result + "*************************************************************<br>"
+    try:
+        if crit1 != '':
+            result = result + "&nbsp;&nbsp;" + data[(cat,crit1)] + "<br>"
+            if crit2 != '':
+                result = result + "&nbsp;&nbsp;&nbsp;&nbsp;" + data[(cat,crit1,crit2)] + "<br>"
+                if crit4 == "":
+                    for i in range(len(crit3)):
+                        result = result + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data[(cat,crit1,crit2,crit3[i])] + "<br>"
+                else:
+                    for crit3,crit4 in crit34:
+                        result = result + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data[(cat,crit1,crit2,crit3)] + "<br>"
+                        if crit4 != '':
+                            for j in crit4.split(","):
+                                j = j.lstrip()
+                                result = result + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data[(cat,crit1,crit2,crit3,j)] + "<br>"
+        
+        result = result + "*************************************************************<br>"
+        success = 1
+    except:
+        success = 0
     
     print(result)
+    slog = log(val,success)
 
 if __name__ == '__main__':  
     form = cgi.FieldStorage()
