@@ -1,0 +1,53 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Расчет категории IUCN</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" href="libs/ext-3.3.1/resources/css/ext-all.css" type="text/css">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet"> 
+<body>
+<div class="container">
+    <div class="masthead">
+        <h3 class="muted">Удобная работа с кодом IUCN</h3>
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="container">
+              <ul class="nav">
+                <li><a href="/">Определить код</a></li>
+                <li class="active"><a href="iucn2text.html">Код в текст</a></li>
+                <li><a href="species2text.html">Вид в текст</a></li>
+                <li><a href="docu">Справка</a></li>
+                <li><a href="#">Контакты</a></li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- /.navbar -->
+    </div>
+    <form name="input" action="/cgi-bin/iucn2text.py" method="get">
+    Код IUCN: <input type="text" name="iucncode" size="100">
+    <input type="submit" value="Расшифровать">
+    </form>
+    <p>Тесты, которые должны работать:</p>
+    <pre>EX
+CR A1cd
+VU A2c+3c
+EN B1ac(i,ii,iii)
+EN A2c; D
+VU D1+2
+CR A2c+3c; B1ab(iii)
+CR D
+VU D2
+EN B2ab(i,ii,iii)
+VU C2a(ii)
+EN B2ab(i,ii,iii)
+VU C2a(ii)
+EN A1c; B1ab(iii); C2a(i)
+EN B2b(iii)c(ii)
+EN B1ab(i,ii,v)c(iii,iv); 2b(i)c(ii,v) <- ошибочный!
+VU B1ab(iii)+2ab(iii)
+EN A2abc+3bc+4abc; B1b(iii,iv,v)+2b(iii,iv,v)c(ii,iii,iv)</pre>
+</div>
+</body>
+</html>
